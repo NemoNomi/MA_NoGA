@@ -9,6 +9,8 @@ public class SocketSceneLoader : MonoBehaviour
 {
     [Header("Erwartetes Objekt")]
     public GameObject keyObject;
+     [Header("Audio")]
+    public AudioOnInsert audioPlayer; 
 
     XRSocketInteractor socket;
     bool fulfilled;
@@ -34,7 +36,10 @@ public class SocketSceneLoader : MonoBehaviour
 
     IEnumerator FadeThenLoad()
     {
-var fader = GameObject.FindAnyObjectByType<FadeScreenUniversal>();
+        if (audioPlayer != null)
+            yield return audioPlayer.Play();
+
+        var fader = GameObject.FindAnyObjectByType<FadeScreenUniversal>();
         if (fader != null)
             yield return fader.FadeOut();
 
