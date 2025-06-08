@@ -10927,7 +10927,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdTime: 3
-  sceneBuildIndex: 2
   progressRing: {fileID: 493964006}
 --- !u!54 &1362485793
 Rigidbody:

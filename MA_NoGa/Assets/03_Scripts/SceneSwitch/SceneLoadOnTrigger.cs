@@ -6,9 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Collider))]
 public class SceneLoadOnTrigger : MonoBehaviour
 {
-    [Header("Timer & Zielszene")]
+    [Header("Timer")]
     public float holdTime = 3f;
-    public int   sceneBuildIndex = 2;
 
     [Header("Progress UI")]
     public Image progressRing;
@@ -58,7 +57,8 @@ public class SceneLoadOnTrigger : MonoBehaviour
         if (fader != null)
             yield return fader.FadeOut();
 
-        SceneManager.LoadScene(sceneBuildIndex);
+        int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextIndex);
     }
 
     void ResetProgress()
