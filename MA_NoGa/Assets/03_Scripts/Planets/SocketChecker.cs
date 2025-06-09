@@ -5,15 +5,18 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 [RequireComponent(typeof(XRSocketInteractor))]
-public class SocketSceneLoader : MonoBehaviour
+public class SocketChecker : MonoBehaviour
 {
     [Header("Erwartetes Objekt")]
+    [Tooltip("Das Objekt, das in den Socket gesteckt werden muss.")]
     public GameObject keyObject;
-     [Header("Audio")]
-    public AudioOnInsert audioPlayer; 
 
-    XRSocketInteractor socket;
-    bool fulfilled;
+    [Header("Audio")]
+    [Tooltip("Dein TimedAudioOnInsert–Component, der die komplette Sequenz abspielt.")]
+    public TimedAudioOnInsert audioPlayer;
+
+    private XRSocketInteractor socket;
+    private bool sequenceStarted = false;
 
     void Awake()
     {
@@ -22,28 +25,30 @@ public class SocketSceneLoader : MonoBehaviour
 
     void Update()
     {
-        if (fulfilled || !socket.hasSelection) return;
+        // Nur einmal auslösen und nur, wenn tatsächlich etwas selektiert ist
+        if (sequenceStarted || !socket.hasSelection) return;
 
-        var interactable = socket.interactablesSelected[0];
-        if (interactable == null) return;
-
-        if (interactable.transform.gameObject == keyObject)
+        var selected = socket.interactablesSelected[0]?.transform.gameObject;
+        if (selected == keyObject)
         {
-            fulfilled = true;
-            StartCoroutine(FadeThenLoad());
+            sequenceStarted = true;
+            StartCoroutine(PlayAudioThenFadeAndLoad());
         }
     }
 
-    IEnumerator FadeThenLoad()
+    private IEnumerator PlayAudioThenFadeAndLoad()
     {
+        // 1) Warte auf das komplette Abspielen aller Clips (mit ihren Delays)
         if (audioPlayer != null)
-            yield return audioPlayer.Play();
+            yield return StartCoroutine(audioPlayer.PlaySequence());
 
-        var fader = GameObject.FindAnyObjectByType<FadeScreenUniversal>();
+        // 2) Fade-Out
+        var fader = FindObjectOfType<FadeScreenUniversal>();
         if (fader != null)
             yield return fader.FadeOut();
 
-        int next = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(next);
+        // 3) Nächste Szene laden
+        int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextIndex);
     }
 }
