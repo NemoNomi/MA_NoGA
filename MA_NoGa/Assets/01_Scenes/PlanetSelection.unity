@@ -460,7 +460,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.06256131, y: 0.063512444, z: 0.1514542}
-  m_Center: {x: -0.0015516839, y: -0.022428095, z: 0.039350566}
+  m_Center: {x: 0, y: 0, z: 0.039350566}
 --- !u!1 &91834231
 GameObject:
   m_ObjectHideFlags: 0
@@ -12364,6 +12364,8 @@ MonoBehaviour:
   - {fileID: 1687491520}
   delays:
   - 3
+  - 2
+  - 2
   - 2
 --- !u!114 &803591315
 MonoBehaviour:

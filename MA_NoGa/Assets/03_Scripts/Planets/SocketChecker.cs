@@ -25,7 +25,6 @@ public class SocketChecker : MonoBehaviour
 
     void Update()
     {
-        // Nur einmal auslösen und nur, wenn tatsächlich etwas selektiert ist
         if (sequenceStarted || !socket.hasSelection) return;
 
         var selected = socket.interactablesSelected[0]?.transform.gameObject;
@@ -38,16 +37,14 @@ public class SocketChecker : MonoBehaviour
 
     private IEnumerator PlayAudioThenFadeAndLoad()
     {
-        // 1) Warte auf das komplette Abspielen aller Clips (mit ihren Delays)
         if (audioPlayer != null)
             yield return StartCoroutine(audioPlayer.PlaySequence());
 
-        // 2) Fade-Out
-        var fader = FindObjectOfType<FadeScreenUniversal>();
+        var fader = FindFirstObjectByType<FadeScreenUniversal>();
+
         if (fader != null)
             yield return fader.FadeOut();
 
-        // 3) Nächste Szene laden
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextIndex);
     }

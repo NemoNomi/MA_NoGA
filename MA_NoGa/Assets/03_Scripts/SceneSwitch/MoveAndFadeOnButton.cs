@@ -53,7 +53,8 @@ public class MoveAndFadeOnButton : MonoBehaviour
     {
         running = true;
 
-        FadeOutMainMenu fader = FindObjectOfType<FadeOutMainMenu>();
+        FadeOutMainMenu fader = FindFirstObjectByType<FadeOutMainMenu>();
+
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (fader) fader.FadeAndLoad(nextIndex);
         else SceneManager.LoadScene(nextIndex);
