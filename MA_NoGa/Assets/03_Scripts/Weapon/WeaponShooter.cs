@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class WeaponShooter : MonoBehaviour
 {
     [Tooltip("Ort, an dem das Projektil erscheint.")]
@@ -10,14 +11,15 @@ public class WeaponShooter : MonoBehaviour
     public float shootForce = 500f;
 
     [Header("Input Action References")]
-    [Tooltip("Input Action für die rechte Hand (z.B. TriggerButton RightHand XR Controller).")]
     public InputActionReference rightTriggerAction;
-
-    [Tooltip("Input Action für die linke Hand (z.B. TriggerButton LeftHand XR Controller).")]
     public InputActionReference leftTriggerAction;
 
     [Header("Pooling")]
     public BallPooler ballPooler;
+
+    [Header("Grab Interactable")]
+    [Tooltip("XR Grab Interactable Component an der Waffe.")]
+    public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
 
     void OnEnable()
     {
@@ -54,6 +56,11 @@ public class WeaponShooter : MonoBehaviour
 
     void Shoot()
     {
+        if (grabInteractable == null || !grabInteractable.isSelected)
+        {
+            return;
+        }
+
         if (ballPooler == null || spawnPoint == null) return;
 
         GameObject projectile = ballPooler.GetPooledObject();
