@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ActivateOnAudioPlay : MonoBehaviour
 {
-       public MonoBehaviour timedAudioComponent;
+    public MonoBehaviour timedAudioComponent;
 
     [Tooltip("Zero-based index of the clip that will trigger activation.")]
     public int audioIndex = 0;
@@ -11,24 +11,32 @@ public class ActivateOnAudioPlay : MonoBehaviour
     public GameObject objectToActivate;
 
     private bool hasActivated = false;
-
-    void Update()
+    void Start()
     {
-        if (hasActivated || timedAudioComponent == null) return;
-
-        AudioSource[] sources = null;
-        if (timedAudioComponent is TimedAudioOnStart tas)
-            sources = tas.audioSources;
-        else if (timedAudioComponent is TimedAudioOnGrab tai)
-            sources = tai.audioSources;
-
-        if (sources == null || sources.Length <= audioIndex) return;
-
-        var src = sources[audioIndex];
-        if (src != null && src.isPlaying)
-        {
-            objectToActivate.SetActive(true);
-            hasActivated = true;
-        }
+        if (objectToActivate != null)
+            objectToActivate.SetActive(false);
     }
+
+void Update()
+{
+    if (hasActivated || timedAudioComponent == null) return;
+
+    AudioSource[] sources = null;
+    if (timedAudioComponent is TimedAudioOnStart tas)
+        sources = tas.audioSources;
+    else if (timedAudioComponent is TimedAudioOnGrab tai)
+        sources = tai.audioSources;
+    else if (timedAudioComponent is TimedAudioOnTrigger tat)
+        sources = tat.audioSources;
+
+    if (sources == null || sources.Length <= audioIndex) return;
+
+    var src = sources[audioIndex];
+    if (src != null && src.isPlaying)
+    {
+        objectToActivate.SetActive(true);
+        hasActivated = true;
+    }
+}
+
 }
