@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class WeaponShooter : MonoBehaviour
 {
@@ -10,10 +9,6 @@ public class WeaponShooter : MonoBehaviour
     [Tooltip("Wie stark das Projektil weggeschossen wird.")]
     public float shootForce = 500f;
 
-    [Header("Input Action References")]
-    public InputActionReference rightTriggerAction;
-    public InputActionReference leftTriggerAction;
-
     [Header("Pooling")]
     public BallPooler ballPooler;
 
@@ -21,46 +16,36 @@ public class WeaponShooter : MonoBehaviour
     [Tooltip("XR Grab Interactable Component an der Waffe.")]
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
 
+    private bool hasRecentlyShot = false;
+
     void OnEnable()
     {
-        if (rightTriggerAction != null)
-        {
-            rightTriggerAction.action.Enable();
-            rightTriggerAction.action.performed += OnShoot;
-        }
-        if (leftTriggerAction != null)
-        {
-            leftTriggerAction.action.Enable();
-            leftTriggerAction.action.performed += OnShoot;
-        }
+        if (grabInteractable != null)
+            grabInteractable.activated.AddListener(OnActivated);
     }
 
     void OnDisable()
     {
-        if (rightTriggerAction != null)
-        {
-            rightTriggerAction.action.performed -= OnShoot;
-            rightTriggerAction.action.Disable();
-        }
-        if (leftTriggerAction != null)
-        {
-            leftTriggerAction.action.performed -= OnShoot;
-            leftTriggerAction.action.Disable();
-        }
+        if (grabInteractable != null)
+            grabInteractable.activated.RemoveListener(OnActivated);
     }
 
-    private void OnShoot(InputAction.CallbackContext context)
+private void OnActivated(ActivateEventArgs args)
+{
+    if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor)
     {
         Shoot();
     }
+}
 
-    void Shoot()
+
+    private void ResetShotFlag()
     {
-        if (grabInteractable == null || !grabInteractable.isSelected)
-        {
-            return;
-        }
+        hasRecentlyShot = false;
+    }
 
+    public void Shoot()
+    {
         if (ballPooler == null || spawnPoint == null) return;
 
         GameObject projectile = ballPooler.GetPooledObject();
