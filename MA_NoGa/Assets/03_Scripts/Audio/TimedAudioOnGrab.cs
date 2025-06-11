@@ -1,36 +1,45 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class TimedAudioOnGrab : MonoBehaviour
 {
-    [Tooltip("The interactable object the player must grab to start the sequence")]
-    public XRGrabInteractable triggerObject;
+    [Tooltip("Die Objekte, die das Audio starten, wenn eines davon gegrabbt wird.")]
+    public List<XRGrabInteractable> triggerObjects;
 
-    [Tooltip("AudioSources to play in sequence")]
+    [Tooltip("AudioSources, die in Sequenz abgespielt werden.")]
     public AudioSource[] audioSources;
 
-    [Tooltip("Delays in seconds. delays[0] = wait after grab before first clip. delays[i] (i>0) = wait after clip[i-1] ends before playing clip[i].")]
+    [Tooltip("Delays in Sekunden. delays[0] = Wartezeit nach dem Grab, delays[i] (i>0) = Wartezeit nach Clip[i-1].")]
     public float[] delays;
 
-    bool hasTriggered = false;
+    private bool hasTriggered = false;
 
     void OnEnable()
     {
-        if (triggerObject != null)
-            triggerObject.selectEntered.AddListener(OnGrab);
+        foreach (var interactable in triggerObjects)
+        {
+            if (interactable != null)
+                interactable.selectEntered.AddListener(OnGrab);
+        }
     }
 
     void OnDisable()
     {
-        if (triggerObject != null)
-            triggerObject.selectEntered.RemoveListener(OnGrab);
+        foreach (var interactable in triggerObjects)
+        {
+            if (interactable != null)
+                interactable.selectEntered.RemoveListener(OnGrab);
+        }
     }
 
     private void OnGrab(SelectEnterEventArgs args)
     {
-        if (hasTriggered) return;
+        if (hasTriggered)
+            return;
+
         hasTriggered = true;
         StartCoroutine(PlaySequence());
     }
@@ -39,27 +48,22 @@ public class TimedAudioOnGrab : MonoBehaviour
     {
         if (audioSources.Length != delays.Length)
         {
-            Debug.LogError("TimedAudioOnGrab: 'audioSources' and 'delays' arrays must be the same length.");
+            Debug.LogError("TimedAudioOnGrab: 'audioSources' und 'delays' müssen gleich lang sein.");
             yield break;
         }
 
-        // 1) initial delay after grab
         yield return new WaitForSeconds(delays[0]);
 
         for (int i = 0; i < audioSources.Length; i++)
         {
-            // 2) play this clip
             if (audioSources[i] != null)
                 audioSources[i].Play();
             else
-                Debug.LogWarning($"TimedAudioOnGrab: audioSources[{i}] is null.");
+                Debug.LogWarning($"TimedAudioOnGrab: audioSources[{i}] ist null.");
 
-            // 3) if there’s a next clip, wait its length + its delay before looping
             if (i + 1 < audioSources.Length)
             {
-                float clipLen = audioSources[i].clip != null
-                    ? audioSources[i].clip.length
-                    : 0f;
+                float clipLen = audioSources[i].clip != null ? audioSources[i].clip.length : 0f;
                 yield return new WaitForSeconds(clipLen + delays[i + 1]);
             }
         }
