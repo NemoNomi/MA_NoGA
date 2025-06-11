@@ -12379,7 +12379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c3cd5c9c8c74c4ea529d8ee5239deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerObject: {fileID: 429999779}
+  triggerObjects:
+  - {fileID: 429999779}
   audioSources:
   - {fileID: 1541593861}
   - {fileID: 1541593860}
