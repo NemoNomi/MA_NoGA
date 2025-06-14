@@ -8,6 +8,7 @@ TagManager:
   - PlayerHand
   - Paintable
   - ColorSource
+  - DoorOpener
   layers:
   - Default
   - TransparentFX
