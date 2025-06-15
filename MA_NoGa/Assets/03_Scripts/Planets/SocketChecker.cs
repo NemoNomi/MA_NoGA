@@ -4,26 +4,36 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
+/// <summary>
+/// Detects when a specific object is inserted into this
+/// XRSocketInteractor.
+/// Once detected, it plays a TimedAudioOnInsert sequence,
+/// fades the screen, and loads the next scene.
+/// </summary>
+
 [RequireComponent(typeof(XRSocketInteractor))]
 public class SocketChecker : MonoBehaviour
 {
-    [Header("Erwartetes Objekt")]
-    [Tooltip("Das Objekt, das in den Socket gesteckt werden muss.")]
-    public GameObject keyObject;
+    #region Inspector
+    [Header("Expected Object")]
+    [SerializeField] private GameObject keyObject;
 
     [Header("Audio")]
-    [Tooltip("Dein TimedAudioOnInsert–Component, der die komplette Sequenz abspielt.")]
-    public TimedAudioOnInsert audioPlayer;
+    [SerializeField] private TimedAudioOnInsert audioPlayer;
+    #endregion
 
+    #region Cached References
     private XRSocketInteractor socket;
-    private bool sequenceStarted = false;
+    #endregion
 
-    void Awake()
-    {
-        socket = GetComponent<XRSocketInteractor>();
-    }
+    #region State
+    private bool sequenceStarted;
+    #endregion
 
-    void Update()
+    #region Unity Lifecycle
+    private void Awake() => socket = GetComponent<XRSocketInteractor>();
+
+    private void Update()
     {
         if (sequenceStarted || !socket.hasSelection) return;
 
@@ -31,21 +41,23 @@ public class SocketChecker : MonoBehaviour
         if (selected == keyObject)
         {
             sequenceStarted = true;
-            StartCoroutine(PlayAudioThenFadeAndLoad());
+            StartCoroutine(PlayAudioFadeAndLoad());
         }
     }
+    #endregion
 
-    private IEnumerator PlayAudioThenFadeAndLoad()
+    #region Fade and Load Scene
+    private IEnumerator PlayAudioFadeAndLoad()
     {
-        if (audioPlayer != null)
+        if (audioPlayer)
             yield return StartCoroutine(audioPlayer.PlaySequence());
 
         var fader = FindFirstObjectByType<FadeScreenUniversal>();
-
-        if (fader != null)
+        if (fader)
             yield return fader.FadeOut();
 
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextIndex);
     }
+    #endregion
 }

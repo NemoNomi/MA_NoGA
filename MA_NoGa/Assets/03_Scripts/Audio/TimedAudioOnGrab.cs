@@ -4,68 +4,75 @@ using System.Collections.Generic;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+/// <summary>
+/// Plays a sequence of AudioSource clips when any given
+/// <XRGrabInteractable is first grabbed.  
+/// </summary>
+
 public class TimedAudioOnGrab : MonoBehaviour
 {
-    [Tooltip("Die Objekte, die das Audio starten, wenn eines davon gegrabbt wird.")]
-    public List<XRGrabInteractable> triggerObjects;
+    #region Inspector
+    [Header("Trigger")]
+    [SerializeField] private List<XRGrabInteractable> triggerObjects;
 
-    [Tooltip("AudioSources, die in Sequenz abgespielt werden.")]
-    public AudioSource[] audioSources;
+    [Header("Audio")]
+public AudioSource[] audioSources;
+    
 
-    [Tooltip("Delays in Sekunden. delays[0] = Wartezeit nach dem Grab, delays[i] (i>0) = Wartezeit nach Clip[i-1].")]
-    public float[] delays;
+    [Tooltip("delay[0] = wait after grab, delays[i] (i>0) = wait after clip i-1")]
+    [SerializeField] private float[] delays;
+    #endregion
 
-    private bool hasTriggered = false;
+    #region State
+    private bool triggered;
+    #endregion
 
-    void OnEnable()
+    private void OnEnable() => ToggleListeners(true);
+    private void OnDisable() => ToggleListeners(false);
+
+    #region Listener Helpers
+    private void ToggleListeners(bool add)
     {
         foreach (var interactable in triggerObjects)
-        {
             if (interactable != null)
-                interactable.selectEntered.AddListener(OnGrab);
-        }
+            {
+                if (add) interactable.selectEntered.AddListener(OnGrab);
+                else interactable.selectEntered.RemoveListener(OnGrab);
+            }
     }
+    #endregion
 
-    void OnDisable()
+    #region Grab Callback
+    private void OnGrab(SelectEnterEventArgs _)
     {
-        foreach (var interactable in triggerObjects)
-        {
-            if (interactable != null)
-                interactable.selectEntered.RemoveListener(OnGrab);
-        }
+        if (triggered) return;
+        triggered = true;
+
+        if (audioSources.Length != delays.Length)
+            Debug.LogError("TimedAudioOnGrab: 'audioSources' and 'delays' must have the same length.");
+        else
+            StartCoroutine(PlaySequence());
     }
+    #endregion
 
-    private void OnGrab(SelectEnterEventArgs args)
-    {
-        if (hasTriggered)
-            return;
-
-        hasTriggered = true;
-        StartCoroutine(PlaySequence());
-    }
-
+    #region Coroutine
     private IEnumerator PlaySequence()
     {
-        if (audioSources.Length != delays.Length)
-        {
-            Debug.LogError("TimedAudioOnGrab: 'audioSources' und 'delays' müssen gleich lang sein.");
-            yield break;
-        }
-
         yield return new WaitForSeconds(delays[0]);
 
         for (int i = 0; i < audioSources.Length; i++)
         {
-            if (audioSources[i] != null)
-                audioSources[i].Play();
-            else
-                Debug.LogWarning($"TimedAudioOnGrab: audioSources[{i}] ist null.");
+            var src = audioSources[i];
+
+            if (src) src.Play();
+            else Debug.LogWarning($"TimedAudioOnGrab: audioSources[{i}] is null.");
 
             if (i + 1 < audioSources.Length)
             {
-                float clipLen = audioSources[i].clip != null ? audioSources[i].clip.length : 0f;
+                float clipLen = src && src.clip ? src.clip.length : 0f;
                 yield return new WaitForSeconds(clipLen + delays[i + 1]);
             }
         }
     }
+    #endregion
 }

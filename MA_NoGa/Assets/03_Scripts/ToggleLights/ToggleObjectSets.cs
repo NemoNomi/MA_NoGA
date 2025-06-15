@@ -1,37 +1,48 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
+/// <summary>
+/// Cycles through predefined GameObject groups (“sets”), deactivating all
+/// current objects and activating the next group each time
+/// ActivateNextSet is called.
+/// </summary>
 public class ToggleObjectSets : MonoBehaviour
 {
+    #region Data Types
     [System.Serializable]
     public class ObjectSet
     {
-        public List<GameObject> objects;
+        public List<GameObject> objects = new();
     }
+    #endregion
 
-    public List<ObjectSet> sets = new List<ObjectSet>();
+    #region Inspector
+    [SerializeField] private List<ObjectSet> sets = new();
+    #endregion
 
+    #region State
     private int currentSetIndex = -1;
+    #endregion
 
+    #region Public API
     public void ActivateNextSet()
     {
-        foreach (var set in sets)
-        {
-            foreach (var obj in set.objects)
-            {
-                if (obj != null)
-                    obj.SetActive(false);
-            }
-        }
-
-        currentSetIndex++;
-        if (currentSetIndex >= sets.Count)
-            currentSetIndex = 0;
-
-        foreach (var obj in sets[currentSetIndex].objects)
-        {
-            if (obj != null)
-                obj.SetActive(true);
-        }
+        DeactivateAll();
+        currentSetIndex = (currentSetIndex + 1) % sets.Count;
+        SetActive(sets[currentSetIndex].objects, true);
     }
+    #endregion
+
+    #region Helpers
+    private void DeactivateAll()
+    {
+        foreach (var set in sets) SetActive(set.objects, false);
+    }
+
+    private static void SetActive(IEnumerable<GameObject> objs, bool value)
+    {
+        foreach (var obj in objs)
+            if (obj) obj.SetActive(value);
+    }
+    #endregion
 }

@@ -1,13 +1,21 @@
 using UnityEngine;
 
+/// <summary>
+/// Copies the color of any collider tagged colorSource
+/// to the pen’s ineMaterial when they enter this trigger.
+/// </summary>
+
 public class PenColorPicker : MonoBehaviour
 {
-    [Tooltip("Das Material des Stifts, dessen Farbe angepasst wird.")]
+    #region Inspector
+    [Tooltip("Material, that changes color.")]
     public Material lineMaterial;
 
-    [Tooltip("Nur Materialien von Objekten mit diesem Tag werden übernommen.")]
+    [Tooltip("Materials where the color is taken from.")]
     public string colorSourceTag = "ColorSource";
+    #endregion
 
+    #region Trigger
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(colorSourceTag)) return;
@@ -18,4 +26,5 @@ public class PenColorPicker : MonoBehaviour
             lineMaterial.color = objRenderer.material.color;
         }
     }
+    #endregion
 }

@@ -1,42 +1,54 @@
 using UnityEngine;
 
+/// <summary>
+/// Activates a GameObject when a specified AudioSource starts playing.
+/// </summary>
 public class ActivateOnAudioPlay : MonoBehaviour
 {
-    public MonoBehaviour timedAudioComponent;
+    #region Inspector
+    [SerializeField] private MonoBehaviour timedAudioComponent;
+    [SerializeField] private int audioIndex = 0;
+    [SerializeField] private GameObject objectToActivate;
+    #endregion
 
-    [Tooltip("Zero-based index of the clip that will trigger activation.")]
-    public int audioIndex = 0;
+    #region State
+    private AudioSource targetSource;
+    private bool activated;
+    #endregion
 
-    [Tooltip("The GameObject to activate when that clip starts.")]
-    public GameObject objectToActivate;
-
-    private bool hasActivated = false;
-    void Start()
+    #region Unity Events
+    private void Start()
     {
-        if (objectToActivate != null)
-            objectToActivate.SetActive(false);
+        if (objectToActivate) objectToActivate.SetActive(false);
+        targetSource = ResolveTargetSource();
     }
 
-void Update()
-{
-    if (hasActivated || timedAudioComponent == null) return;
-
-    AudioSource[] sources = null;
-    if (timedAudioComponent is TimedAudioOnStart tas)
-        sources = tas.audioSources;
-    else if (timedAudioComponent is TimedAudioOnGrab tai)
-        sources = tai.audioSources;
-    else if (timedAudioComponent is TimedAudioOnTrigger tat)
-        sources = tat.audioSources;
-
-    if (sources == null || sources.Length <= audioIndex) return;
-
-    var src = sources[audioIndex];
-    if (src != null && src.isPlaying)
+    private void Update()
     {
-        objectToActivate.SetActive(true);
-        hasActivated = true;
-    }
-}
+        if (activated || targetSource == null) return;
 
+        if (targetSource.isPlaying)
+        {
+            objectToActivate.SetActive(true);
+            activated = true;
+        }
+    }
+    #endregion
+
+    #region Helpers
+    private AudioSource ResolveTargetSource()
+    {
+        if (timedAudioComponent == null) return null;
+
+        AudioSource[] sources = timedAudioComponent switch
+        {
+            TimedAudioOnStart t => t.audioSources,
+            TimedAudioOnGrab t => t.audioSources,
+            TimedAudioOnTrigger t => t.audioSources,
+            _ => null
+        };
+
+        return (sources != null && audioIndex < sources.Length) ? sources[audioIndex] : null;
+    }
+    #endregion
 }

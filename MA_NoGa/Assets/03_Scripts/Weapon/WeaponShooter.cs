@@ -3,19 +3,18 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class WeaponShooter : MonoBehaviour
 {
-    [Tooltip("Ort, an dem das Projektil erscheint.")]
+    #region Inspector
     public Transform spawnPoint;
 
-    [Tooltip("Wie stark das Projektil weggeschossen wird.")]
     public float shootForce = 500f;
 
     [Header("Pooling")]
     public BallPooler ballPooler;
 
     [Header("Grab Interactable")]
-    [Tooltip("XR Grab Interactable Component an der Waffe.")]
+    [Tooltip("XR Grab Interactable Component on Weapon.")]
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
-
+    #endregion
     private bool hasRecentlyShot = false;
 
     void OnEnable()
@@ -30,20 +29,20 @@ public class WeaponShooter : MonoBehaviour
             grabInteractable.activated.RemoveListener(OnActivated);
     }
 
-private void OnActivated(ActivateEventArgs args)
-{
-    if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor)
+    private void OnActivated(ActivateEventArgs args)
     {
-        Shoot();
+        if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor)
+        {
+            Shoot();
+        }
     }
-}
 
 
     private void ResetShotFlag()
     {
         hasRecentlyShot = false;
     }
-
+    #region Shoot
     public void Shoot()
     {
         if (ballPooler == null || spawnPoint == null) return;
@@ -66,6 +65,7 @@ private void OnActivated(ActivateEventArgs args)
             StartCoroutine(DeactivateAfterTime(projectile, 5f));
         }
     }
+    #endregion
 
     private System.Collections.IEnumerator DeactivateAfterTime(GameObject obj, float delay)
     {

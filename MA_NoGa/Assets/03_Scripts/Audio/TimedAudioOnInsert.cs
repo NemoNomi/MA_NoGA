@@ -3,74 +3,73 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
+/// <summary>
+/// Plays a sequence of AudioSource clips once an
+/// XRSocketInteractorbecomes occupied.  
+/// </summary>
 
 public class TimedAudioOnInsert : MonoBehaviour
 {
+    #region Inspector
     [Header("Socket Trigger")]
-    [Tooltip("The XR Socket that, when filled, starts the audio sequence.")]
-    public XRSocketInteractor socketInteractor;
+    [SerializeField] private XRSocketInteractor socketInteractor;
 
     [Header("Audio Sequence")]
-    [Tooltip("One AudioSource per clip. Can all live on this GameObject or on different ones.")]
+    [Tooltip("One AudioSource per clip.")]
     public AudioSource[] audioSources;
 
     [Tooltip(
-        "Delays in seconds:\n" +
-        "delays[0] = wait after insert before first clip;\n" +
-        "delays[i>0] = wait after previous clip ends before next."
+        "delays[0] -- pause after insert, before the first clip\n" +
+        "delays[i] -- pause after clip (i-1), before clip i"
     )]
-    public float[] delays;
+    [SerializeField] private float[] delays;
+    #endregion
 
-    private bool hasTriggered = false;
+    #region State
+    private bool triggered;
+    #endregion
 
-    void OnEnable()
+    private void OnEnable() => ToggleListener(true);
+    private void OnDisable() => ToggleListener(false);
+
+    #region Listener
+    private void ToggleListener(bool add)
     {
-        if (socketInteractor != null)
-            socketInteractor.selectEntered.AddListener(OnSocketFilled);
+        if (!socketInteractor) return;
+
+        if (add) socketInteractor.selectEntered.AddListener(OnSocketFilled);
+        else socketInteractor.selectEntered.RemoveListener(OnSocketFilled);
     }
 
-    void OnDisable()
+    private void OnSocketFilled(SelectEnterEventArgs _)
     {
-        if (socketInteractor != null)
-            socketInteractor.selectEntered.RemoveListener(OnSocketFilled);
-    }
+        if (triggered) return;
+        triggered = true;
 
-    private void OnSocketFilled(SelectEnterEventArgs args)
-    {
-        if (hasTriggered) return;
-        hasTriggered = true;
-        StartCoroutine(PlaySequence());
+        if (audioSources.Length != delays.Length)
+            Debug.LogError("'audioSources' and 'delays' must have the same length.");
+        else
+            StartCoroutine(PlaySequence());
     }
+    #endregion
 
-    /// <summary>
-    /// Plays all audioSources in order, observing the delays,
-    /// and ensuring the last clip fully finishes before returning.
-    /// </summary>
+    #region Coroutine
     public IEnumerator PlaySequence()
     {
-        if (audioSources.Length != delays.Length)
-        {
-            Debug.LogError("TimedAudioOnInsert: 'audioSources' and 'delays' must be the same length.");
-            yield break;
-        }
-
         yield return new WaitForSeconds(delays[0]);
 
         for (int i = 0; i < audioSources.Length; i++)
         {
             var src = audioSources[i];
-            if (src != null && src.clip != null)
-            {
-                src.Play();
-            }
-            else
-            {
-                Debug.LogWarning($"TimedAudioOnInsert: audioSources[{i}] or its clip is null.");
-            }
 
-            float clipLen = src != null && src.clip != null ? src.clip.length : 0f;
-            float extraDelay = (i + 1 < delays.Length) ? delays[i + 1] : 0f;
-            yield return new WaitForSeconds(clipLen + extraDelay);
+            if (src && src.clip) src.Play();
+            else Debug.LogWarning($"audioSources[{i}] or its clip is null");
+
+            float clipLen = src && src.clip ? src.clip.length : 0f;
+            float nextDelay = (i + 1 < delays.Length) ? delays[i + 1] : 0f;
+
+            yield return new WaitForSeconds(clipLen + nextDelay);
         }
     }
+    #endregion
 }

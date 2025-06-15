@@ -3,25 +3,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Loads the next scene when one or more PlayerHand colliders remain inside
+/// this trigger for defined seconds, visualised by an optional
+/// radial progress>.
+/// </summary>
+
 [RequireComponent(typeof(Collider))]
 public class SceneLoadOnTrigger : MonoBehaviour
 {
+    #region Inspector
     [Header("Timer")]
-    public float holdTime = 3f;
+    [SerializeField] private float holdTime = 3f;
 
     [Header("Progress UI")]
-    public Image progressRing;
+    [SerializeField] private Image progressRing;
+    #endregion
 
-    Coroutine holdRoutine;
-    int handsInside = 0;
+    #region State
+    private Coroutine holdRoutine;
+    private int handsInside;
+    #endregion
 
-    void Awake()
+    #region Unity Lifecycle
+    private void Awake()
     {
-        if (progressRing != null)
-            progressRing.fillAmount = 0f;
+        if (progressRing) progressRing.fillAmount = 0f;
     }
+    #endregion
 
-    void OnTriggerEnter(Collider col)
+    #region Trigger Callbacks
+    private void OnTriggerEnter(Collider col)
     {
         if (!col.CompareTag("PlayerHand")) return;
 
@@ -29,46 +41,45 @@ public class SceneLoadOnTrigger : MonoBehaviour
             holdRoutine = StartCoroutine(HoldCountdown());
     }
 
-    void OnTriggerExit(Collider col)
+    private void OnTriggerExit(Collider col)
     {
         if (!col.CompareTag("PlayerHand")) return;
 
         handsInside = Mathf.Max(0, handsInside - 1);
         if (handsInside == 0) ResetProgress();
     }
+    #endregion
 
-    IEnumerator HoldCountdown()
+    #region Coroutine
+    private IEnumerator HoldCountdown()
     {
         float t = 0f;
+
         while (t < holdTime)
         {
-            if (progressRing != null)
-                progressRing.fillAmount = t / holdTime;
-
+            if (progressRing) progressRing.fillAmount = t / holdTime;
             if (handsInside == 0) yield break;
+
             t += Time.deltaTime;
             yield return null;
         }
 
-        if (progressRing != null)
-            progressRing.fillAmount = 1f;
+        if (progressRing) progressRing.fillAmount = 1f;
 
-        var fader = GameObject.FindFirstObjectByType<FadeScreenUniversal>();
-        if (fader != null)
-            yield return fader.FadeOut();
+        var fader = FindFirstObjectByType<FadeScreenUniversal>();
+        if (fader) yield return fader.FadeOut();
 
-        int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(nextIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    #endregion
 
-    void ResetProgress()
+    #region Helpers
+    private void ResetProgress()
     {
-        if (holdRoutine != null)
-            StopCoroutine(holdRoutine);
+        if (holdRoutine != null) StopCoroutine(holdRoutine);
 
         holdRoutine = null;
-
-        if (progressRing != null)
-            progressRing.fillAmount = 0f;
+        if (progressRing) progressRing.fillAmount = 0f;
     }
+    #endregion
 }
