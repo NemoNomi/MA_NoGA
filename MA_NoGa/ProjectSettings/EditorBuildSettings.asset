@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/01_Scenes/PlanetSelection.unity
     guid: 2b9fd2cfb49d2104f9b418313fb57568
   - enabled: 1
-    path: Assets/01_Scenes/InterviewScene.unity
+    path: Assets/01_Scenes/Academy.unity
     guid: 060fe5bb7a460c14fba0af923e4099a4
   - enabled: 1
     path: Assets/01_Scenes/ProductConfigurator.unity

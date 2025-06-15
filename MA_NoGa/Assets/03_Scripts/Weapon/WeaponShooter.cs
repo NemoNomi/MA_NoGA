@@ -15,7 +15,6 @@ public class WeaponShooter : MonoBehaviour
     [Tooltip("XR Grab Interactable Component on Weapon.")]
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     #endregion
-    private bool hasRecentlyShot = false;
 
     void OnEnable()
     {
@@ -38,10 +37,7 @@ public class WeaponShooter : MonoBehaviour
     }
 
 
-    private void ResetShotFlag()
-    {
-        hasRecentlyShot = false;
-    }
+
     #region Shoot
     public void Shoot()
     {
