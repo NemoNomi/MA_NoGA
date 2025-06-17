@@ -9,6 +9,7 @@ TagManager:
   - Paintable
   - ColorSource
   - DoorOpener
+  - Buddy
   layers:
   - Default
   - TransparentFX
