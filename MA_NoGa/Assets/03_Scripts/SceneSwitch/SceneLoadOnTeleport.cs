@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 /// <summary>
@@ -12,26 +13,47 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 public sealed class SceneLoadOnTeleport : MonoBehaviour
 {
     #region Inspector
-    [SerializeField] private int targetBuildIndex = 1;
+    [SerializeField] private int        targetBuildIndex = 1;
+    [SerializeField] private string     animationBool    = "Open";
+    [SerializeField] private Animator[] animators;
     #endregion
 
     #region Fields
-    private TeleportationArea _tpArea;
+    private TeleportationArea _area;
     #endregion
 
-    #region Unity Lifecycle
+    #region Unity
     private void Awake()
     {
-        _tpArea = GetComponent<TeleportationArea>();
-        _tpArea.teleporting.AddListener(OnTeleporting);
+        _area = GetComponent<TeleportationArea>();
+
+        if (animators == null || animators.Length == 0)
+            animators = GetComponentsInChildren<Animator>(true);
+
+        _area.selectEntered.AddListener(OnSelectEntered);
+        _area.selectExited .AddListener(OnSelectExited);
+        _area.teleporting  .AddListener(OnTeleporting);
     }
 
-    private void OnDestroy() =>
-        _tpArea.teleporting.RemoveListener(OnTeleporting);
+    private void OnDestroy()
+    {
+        _area.selectEntered.RemoveListener(OnSelectEntered);
+        _area.selectExited .RemoveListener(OnSelectExited);
+        _area.teleporting .RemoveListener(OnTeleporting);
+    }
     #endregion
 
-    #region Event Handlers
-    private void OnTeleporting(TeleportingEventArgs _) =>
-        SceneManager.LoadScene(targetBuildIndex);
+    #region Event-Handler
+    private void OnSelectEntered(SelectEnterEventArgs _) => SetDoor(true);
+    private void OnSelectExited (SelectExitEventArgs  _) => SetDoor(false);
+    private void OnTeleporting  (TeleportingEventArgs _) => SceneManager.LoadScene(targetBuildIndex);
+    #endregion
+
+    #region Helpers
+    private void SetDoor(bool open)
+    {
+        foreach (var a in animators)
+            a.SetBool(animationBool, open);
+    }
     #endregion
 }
