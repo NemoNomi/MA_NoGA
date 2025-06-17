@@ -12912,7 +12912,7 @@ MonoBehaviour:
   - {fileID: 1747376204}
   - {fileID: 1747376203}
   delays:
-  - 0
+  - 1
   - 1
   - 1
   - 1
@@ -12940,8 +12940,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.19079754, y: 0.48297969, z: 0.46518305}
-  m_Center: {x: 0.356028, y: -0.25851244, z: -1.094644}
+  m_Size: {x: 0.37645218, y: 0.48297969, z: 0.8668113}
+  m_Center: {x: 0.34077734, y: -0.25851244, z: -1.1529552}
 --- !u!4 &1094848230
 Transform:
   m_ObjectHideFlags: 0
