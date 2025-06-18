@@ -10,6 +10,7 @@ TagManager:
   - ColorSource
   - DoorOpener
   - Buddy
+  - PaintingPen
   layers:
   - Default
   - TransparentFX
