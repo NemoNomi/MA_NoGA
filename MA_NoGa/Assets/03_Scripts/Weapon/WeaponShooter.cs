@@ -9,7 +9,7 @@ public class WeaponShooter : MonoBehaviour
     public float shootForce = 500f;
 
     [Header("Pooling")]
-    public BallPooler ballPooler;
+    public ProjectilePooler projectilePooler;
 
     [Header("Grab Interactable")]
     [Tooltip("XR Grab Interactable Component on Weapon.")]
@@ -41,9 +41,9 @@ public class WeaponShooter : MonoBehaviour
     #region Shoot
     public void Shoot()
     {
-        if (ballPooler == null || spawnPoint == null) return;
+        if (projectilePooler == null || spawnPoint == null) return;
 
-        GameObject projectile = ballPooler.GetPooledObject();
+        GameObject projectile = projectilePooler.GetPooledObject();
         if (projectile != null)
         {
             projectile.transform.position = spawnPoint.position;

@@ -4,7 +4,7 @@ using UnityEngine;
 /// Copies this object’s material onto any collider tagged “Paintable”
 /// when the two objects collide.
 /// </summary>
-public class BallMaterialTransfer : MonoBehaviour
+public class ProjectileMaterialTransfer : MonoBehaviour
 {
     #region Cached Data
     private Material ownMaterial;
