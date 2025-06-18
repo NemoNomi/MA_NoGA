@@ -1,22 +1,28 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
-/// Universal fade-in / fade-out screen quad.  
+/// Fade-out screen quad.  
 /// Fades from opaque -- transparent on Start. 
-/// Calls FadeOut to fade back to opaque and wait until done.  
+/// Calls FadeOut to fade back to opaque and wait until done.
+/// Holds Fade for set Duration on Start.  
 /// </summary>
 
 [RequireComponent(typeof(Renderer))]
-public class FadeScreenUniversal : MonoBehaviour
+public class FadeScreenPlanets : MonoBehaviour
 {
     #region Inspector
     [Header("Durations (seconds)")]
+    [SerializeField] private float holdDuration = 1f;
     [SerializeField] private float fadeInDuration = 1f;
     [SerializeField] private float fadeOutDuration = 1f;
 
     [Header("Color")]
     [SerializeField] private Color fadeColor = Color.black;
+
+    [Header("Objects To Toggle (optional)")]
+    [SerializeField] private List<GameObject> objectsToToggle = new();
     #endregion
 
     #region Cached Data
@@ -30,18 +36,28 @@ public class FadeScreenUniversal : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         mpb = new MaterialPropertyBlock();
+
         SetAlpha(1f);
+        ToggleObjects(false);
     }
 
-    private void Start() => StartCoroutine(Fade(1f, 0f, fadeInDuration));
+    private void Start() => StartCoroutine(DelayedFadeIn());
     #endregion
 
     #region Public API
-    public IEnumerator FadeOut() =>
-        Fade(0f, 1f, fadeOutDuration);
+    public IEnumerator FadeOut() => Fade(0f, 1f, fadeOutDuration);
     #endregion
 
-    #region Coroutine
+    #region Coroutines
+    private IEnumerator DelayedFadeIn()
+    {
+        if (holdDuration > 0f)
+            yield return new WaitForSeconds(holdDuration);
+
+        ToggleObjects(true);
+        yield return Fade(1f, 0f, fadeInDuration);
+    }
+
     private IEnumerator Fade(float from, float to, float duration)
     {
         float t = 0f;
@@ -58,6 +74,13 @@ public class FadeScreenUniversal : MonoBehaviour
     #endregion
 
     #region Helpers
+    private void ToggleObjects(bool state)
+    {
+        if (objectsToToggle == null) return;
+        foreach (var go in objectsToToggle)
+            if (go != null) go.SetActive(state);
+    }
+
     private void SetAlpha(float alpha)
     {
         rend.GetPropertyBlock(mpb);

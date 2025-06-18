@@ -52,7 +52,7 @@ public class SocketChecker : MonoBehaviour
         if (audioPlayer)
             yield return StartCoroutine(audioPlayer.PlaySequence());
 
-        var fader = FindFirstObjectByType<FadeScreenUniversal>();
+        var fader = FindFirstObjectByType<FadeScreenPlanets>();
         if (fader)
             yield return fader.FadeOut();
 

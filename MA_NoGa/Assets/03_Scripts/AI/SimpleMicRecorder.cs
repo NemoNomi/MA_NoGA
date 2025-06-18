@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.UI;  
 
 /// <summary>
 /// Records microphone input (16 kHz mono) when the user presses a button,
@@ -32,27 +33,49 @@ public class SimpleMicRecorder : MonoBehaviour
     public ApiAudioHandler apiAudioHandler;
     #endregion
 
-    #region TMP-UI
+     #region UI references & colours
     [Header("UI")]
     public TMP_Text labelTMP;
+
+    [Tooltip("Image you want to tint while recording")]
+    public Image targetImage;                      // ▲ NEW
+
+    [Tooltip("Tint when NOT recording")]
+    public Color idleColour   = Color.white;
+
+    [Tooltip("Tint while recording")]
+    public Color recordColour = new Color(0.85f, 0.15f, 0.15f);  // soft red
     #endregion
 
-    #region Button OnClick-Event
+ #region Button OnClick-Event
     public void ToggleRecording()
     {
         if (isRecording) StopRecording();
         else StartRecording();
 
-        UpdateLabel();
+        UpdateVisuals();
     }
 
-    private void UpdateLabel()
+     private void UpdateVisuals()
     {
+        /* text */
         if (labelTMP != null)
             labelTMP.text = isRecording ? "stop" : "record";
+
+        /* image tint */
+        EnsureImageReference();
+        if (targetImage != null)
+            targetImage.color = isRecording ? recordColour : idleColour;   // ▲ CHANGED
     }
     #endregion
 
+#region Helper
+    private void EnsureImageReference()                // ▲ NEW helper
+    {
+        if (targetImage == null)
+            targetImage = GetComponent<Image>();       // same GO as the Button
+    }
+    #endregion
 
     #region start and stop recording
     private void StartRecording()
