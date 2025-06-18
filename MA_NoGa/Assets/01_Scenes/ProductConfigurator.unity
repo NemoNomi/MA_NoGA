@@ -3568,7 +3568,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715665613214572914, guid: e96ca4f01cff57445907de16f663a7e7, type: 3}
       propertyPath: targetBuildIndex
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715665613214572914, guid: e96ca4f01cff57445907de16f663a7e7, type: 3}
+      propertyPath: fallbackBuildIndex
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4436555654290410451, guid: e96ca4f01cff57445907de16f663a7e7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

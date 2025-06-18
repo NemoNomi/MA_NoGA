@@ -27795,6 +27795,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetBuildIndex: 4
+  fallbackBuildIndex: -1
+  visitedThreshold: 2
+  markTargetAsVisited: 1
   animationBool: Open
   animators:
   - {fileID: 706414202}
@@ -51550,6 +51553,10 @@ PrefabInstance:
       propertyPath: objectToDeactivate
       value: 
       objectReference: {fileID: 776152522}
+    - target: {fileID: 2715665613214572914, guid: e96ca4f01cff57445907de16f663a7e7, type: 3}
+      propertyPath: markTargetAsVisited
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5589707906905503539, guid: e96ca4f01cff57445907de16f663a7e7, type: 3}
       propertyPath: m_Name
       value: ProductConfiguratorDoor
