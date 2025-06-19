@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/01_Scenes/AcademyBackFromBothRooms.unity
     guid: f030244571cc4a849b5a303602103e03
   - enabled: 1
-    path: Assets/01_Scenes/Academy 1.unity
+    path: Assets/01_Scenes/AIDemo.unity
     guid: b3eb6fcd27daa0144be5ca2a7d696291
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
