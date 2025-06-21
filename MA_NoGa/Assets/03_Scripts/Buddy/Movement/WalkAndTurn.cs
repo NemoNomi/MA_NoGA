@@ -15,6 +15,8 @@ public class WalkAndTurn : MonoBehaviour
     public float moveSpeed = 4f;
     public float turnSpeed = 120f;
     public float stopDist = 0.05f;
+    public bool IsMoving => moving;
+    public bool IsTurning => turning;
 
     bool moving = false;
     bool turning = false;
@@ -78,4 +80,5 @@ public class WalkAndTurn : MonoBehaviour
         if (Quaternion.Angle(transform.rotation, finalRot) < 0.1f)
             turning = false;
     }
+
 }
