@@ -15,15 +15,24 @@ public class AudioBlinkEffect : MonoBehaviour
     public Color blinkColor = Color.red;
     public float blinkSpeed = 5f;
 
-    private Material _material;
-    private bool _isBlinking;
+    [Header("Emission Settings")]
+    public float emissionIntensity = 7f;
 
-    void Start()
+    private Material _material;
+    private static readonly string EmissionColorProperty = "_EmissionColor";
+
+
+     void Start()
     {
         if (targetRenderer != null)
+        {
             _material = targetRenderer.material;
+            _material.EnableKeyword("_EMISSION");
+        }
         else
+        {
             Debug.LogError("Target Renderer is not assigned.");
+        }
     }
 
     void Update()
@@ -34,12 +43,17 @@ public class AudioBlinkEffect : MonoBehaviour
         if (audioSource.isPlaying)
         {
             float t = Mathf.PingPong(Time.time * blinkSpeed, 1f);
-            _material.color = Color.Lerp(baseColor, blinkColor, t);
+            Color currentColor = Color.Lerp(baseColor, blinkColor, t);
+            _material.color = currentColor;
+            _material.SetColor(EmissionColorProperty, currentColor * emissionIntensity);
         }
         else
         {
             if (_material.color != baseColor)
+            {
                 _material.color = baseColor;
+                _material.SetColor(EmissionColorProperty, baseColor * emissionIntensity);
+            }
         }
     }
 }
