@@ -4,21 +4,29 @@ using System.Collections;
 /// <summary>
 /// Plays a list of AudioClips sequentially from one single AudioSource after scene starts.
 /// </summary>
-
-public class TimedAudioOnStartSingleSource : MonoBehaviour
+public class TimedAudioOnStartSingleSource : MonoBehaviour, IAudioClipProvider
 {
     #region Inspector
+
     [Tooltip("Single AudioSource to play all clips.")]
-    public AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
 
     [Tooltip("Array of clips to play sequentially.")]
-    public AudioClip[] audioClips;
+    [SerializeField] private AudioClip[] audioClips;
 
     [Tooltip(
         "delays[0] -- pause after scene start before clip 0\n" +
         "delays[i] -- pause after clip (i-1) before clip i"
     )]
     [SerializeField] private float[] delays;
+
+    #endregion
+
+    #region Interface Implementation
+
+    public AudioSource AudioSource => audioSource;
+    public AudioClip[] AudioClips => audioClips;
+
     #endregion
 
     private void Start()
@@ -33,6 +41,7 @@ public class TimedAudioOnStartSingleSource : MonoBehaviour
     }
 
     #region Coroutine
+
     private IEnumerator PlaySequence()
     {
         yield return new WaitForSeconds(delays[0]);
@@ -45,7 +54,6 @@ public class TimedAudioOnStartSingleSource : MonoBehaviour
             {
                 audioSource.clip = clip;
                 audioSource.Play();
-
                 yield return new WaitForSeconds(clip.length);
             }
             else
@@ -59,5 +67,6 @@ public class TimedAudioOnStartSingleSource : MonoBehaviour
             }
         }
     }
+
     #endregion
 }

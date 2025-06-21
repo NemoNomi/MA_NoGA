@@ -2,153 +2,79 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Watches one TimedAudio-component.  
-/// Whenever the selected clip (by index) reaches the chosen moment
-/// (start + delay or clip end) the script assigns the matching
-/// string to a single TextMesh Pro component.
+/// Changes a TMP_Text when a specific clip starts playing on a shared AudioSource,
+/// based on its index in a known AudioClip array.
 /// </summary>
-
-public class ChangeTMPTextOnAudioEvents : MonoBehaviour
+public class ChangeTMPTextOnAudioClipIndex : MonoBehaviour
 {
-    #region Inspector
-    [Header("Source of the audio")]
-    [SerializeField] private MonoBehaviour timedAudioComponent;
+    [Header("Audio Tracking")]
+    [Tooltip("AudioSource that plays the clips.")]
+    [SerializeField] private AudioSource audioSource;
 
-    [Header("Which clips -- which texts")]
-    [Tooltip("One index per clip in the TimedAudio component.")]
-    [SerializeField] private int[] audioIndices;
-    [Tooltip("Text that will be set when the matching clip fires.")]
+    [Tooltip("Reference list of clips (e.g., same as in trigger script).")]
+    [SerializeField] private AudioClip[] referenceClips;
+
+    [Header("Clip Index → Text Mapping")]
+    [Tooltip("Texts to assign when corresponding clip (by index) starts.")]
     [TextArea(2, 4)]
-    [SerializeField] private string[] newTexts;
+    [SerializeField] private string[] texts;
 
-    [Header("Target text")]
-    [Tooltip("Leave empty -- looks for TMP_Text on the same GameObject.")]
+    [Header("Target Text")]
+    [Tooltip("Leave empty to auto-detect on this GameObject.")]
     [SerializeField] private TMP_Text targetText;
 
-    [Header("When to change? (global)")]
-    [Tooltip("If TRUE: wait until the clip finishes.\n"
-           + "If FALSE: use delayAfterStart for all clips.")]
-    [SerializeField] private bool changeAfterClip = false;
-    [Tooltip("Seconds after clip START before text change "
-           + "(ignored if changeAfterClip = true).")]
-    [SerializeField] private float delayAfterStart = 0f;
-    #endregion
+    private int lastClipIndex = -1;
 
-    #region Per-clip tracking
-    private class ClipTracker
-    {
-        public AudioSource source;
-        public bool started;
-        public float startTime;
-        public bool applied;
-        public string text;
-    }
-
-    private ClipTracker[] trackers;
-    #endregion
-
-    #region Unity
     private void Start()
     {
-        if (audioIndices.Length != newTexts.Length)
+        if (!audioSource)
         {
-            Debug.LogError($"{name}: audioIndices and newTexts must have same length.", this);
+            Debug.LogError($"{name}: No AudioSource assigned.");
             enabled = false;
             return;
         }
 
-        if (targetText == null)
+        if (referenceClips == null || referenceClips.Length == 0)
+        {
+            Debug.LogError($"{name}: No referenceClips assigned.");
+            enabled = false;
+            return;
+        }
+
+        if (texts.Length != referenceClips.Length)
+        {
+            Debug.LogWarning($"{name}: Texts array length does not match referenceClips.");
+        }
+
+        if (!targetText)
             targetText = GetComponent<TMP_Text>();
 
-        if (targetText == null)
+        if (!targetText)
         {
-            Debug.LogError($"{name}: No TMP_Text found or assigned.", this);
+            Debug.LogError($"{name}: No TMP_Text found or assigned.");
             enabled = false;
             return;
-        }
-
-        AudioSource[] allSources = ResolveAudioSources();
-        if (allSources == null)
-        {
-            Debug.LogError($"{name}: Could not read audioSources from TimedAudio component.", this);
-            enabled = false;
-            return;
-        }
-
-        trackers = new ClipTracker[audioIndices.Length];
-        for (int i = 0; i < trackers.Length; i++)
-        {
-            int idx = audioIndices[i];
-            if (idx < 0 || idx >= allSources.Length)
-            {
-                Debug.LogWarning($"{name}: audioIndex {idx} out of range.", this);
-                continue;
-            }
-
-            trackers[i] = new ClipTracker
-            {
-                source = allSources[idx],
-                text = newTexts[i]
-            };
         }
     }
 
     private void Update()
     {
-        if (trackers == null) return;
+        if (!audioSource.isPlaying || audioSource.clip == null)
+            return;
 
-        foreach (var t in trackers)
+        int index = System.Array.IndexOf(referenceClips, audioSource.clip);
+
+        if (index >= 0 && index != lastClipIndex)
         {
-            if (t == null || t.applied || t.source == null) continue;
-
-
-            if (!t.started && t.source.isPlaying)
+            if (index < texts.Length)
             {
-                t.started = true;
-                t.startTime = Time.time;
-
-                if (!changeAfterClip && delayAfterStart <= 0f)
-                {
-                    ApplyText(t);
-                    continue;
-                }
-            }
-
-            if (!t.started) continue;
-
-            if (changeAfterClip)
-            {
-                if (!t.source.isPlaying)
-                    ApplyText(t);
+                targetText.text = texts[index];
+                lastClipIndex = index;
             }
             else
             {
-                if (Time.time - t.startTime >= delayAfterStart)
-                    ApplyText(t);
+                Debug.LogWarning($"{name}: No text defined for clip index {index}.");
             }
         }
     }
-    #endregion
-
-    #region Helpers
-    private void ApplyText(ClipTracker t)
-    {
-        targetText.text = t.text;
-        t.applied = true;
-    }
-
-    private AudioSource[] ResolveAudioSources()
-    {
-        if (timedAudioComponent == null) return null;
-
-        return timedAudioComponent switch
-        {
-            TimedAudioOnStart t => t.audioSources,
-            TimedAudioOnGrab t => t.audioSources,
-            TimedAudioOnTrigger t => t.audioSources,
-            TimedAudioOnInsert t => t.audioSources,
-            _ => null
-        };
-    }
-    #endregion
 }

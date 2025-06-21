@@ -1,20 +1,24 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 /// <summary>
-/// Activates a GameObject based on when a specific AudioClip is played by TimedAudioOnStartSingleSource.
+/// Enables a XRGrabInteractable when a specific AudioClip from TimedAudioOnStartSingleSource is played.
 /// </summary>
-
-public class ActivateOnAudioPlaySingleSource : MonoBehaviour
+public class EnableGrabOnAudioPlaySingleSource : MonoBehaviour
 {
     #region Inspector
 
     [SerializeField] private TimedAudioOnStartSingleSource timedAudioSource;
     [SerializeField] private int audioClipIndex = 0;
-    [SerializeField] private GameObject objectToActivate;
+
+    [Header("Grab-Target")]
+    [SerializeField] private XRGrabInteractable grabToEnable;
 
     [Header("Activation Options")]
-    [Tooltip("Activate immediately when clip starts if true, otherwise after delay or when finished.")]
+    [Tooltip("Enable after clip finishes instead of when it starts.")]
     [SerializeField] private bool activateAfterClip = false;
+
+    [Tooltip("Optional delay after the clip starts before enabling grab.")]
     [SerializeField] private float delayAfterStart = 0f;
 
     #endregion
@@ -29,17 +33,17 @@ public class ActivateOnAudioPlaySingleSource : MonoBehaviour
 
     private void Start()
     {
-        if (objectToActivate)
-            objectToActivate.SetActive(false);
+        if (grabToEnable)
+            grabToEnable.enabled = false;
     }
 
     private void Update()
     {
-        if (activated || timedAudioSource.audioSource == null)
+        if (activated || timedAudioSource.AudioSource == null)
             return;
 
-        if (!clipStarted && timedAudioSource.audioSource.isPlaying &&
-            timedAudioSource.audioSource.clip == timedAudioSource.audioClips[audioClipIndex])
+        if (!clipStarted && timedAudioSource.AudioSource.isPlaying &&
+            timedAudioSource.AudioSource.clip == timedAudioSource.AudioClips[audioClipIndex])
         {
             clipStarted = true;
             startTime = Time.time;
@@ -56,7 +60,7 @@ public class ActivateOnAudioPlaySingleSource : MonoBehaviour
 
         if (activateAfterClip)
         {
-            if (!timedAudioSource.audioSource.isPlaying)
+            if (!timedAudioSource.AudioSource.isPlaying)
                 Activate();
         }
         else
@@ -68,7 +72,9 @@ public class ActivateOnAudioPlaySingleSource : MonoBehaviour
 
     private void Activate()
     {
-        objectToActivate.SetActive(true);
+        if (grabToEnable)
+            grabToEnable.enabled = true;
+
         activated = true;
     }
 }
