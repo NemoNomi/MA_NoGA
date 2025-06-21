@@ -1,42 +1,36 @@
 using UnityEngine;
 
 /// <summary>
-/// Rotates this GameObject to face the target camera
-/// but only when the object is idle — i.e., not moving or turning via the WalkAndTurn script.
+/// Rotates the whole Buddy (BuddyRoot) to face the camera when idle.
+/// Only activates when WalkAndTurn reports no movement or turning.
 /// </summary>
+
 public class LookAtPlayerWhenIdle : MonoBehaviour
 {
-    #region Fields
-    public Transform targetCamera;
-    private WalkAndTurn walkAndTurn;
-    #endregion
+    public Transform cam;
+    [SerializeField] private float rotationSpeed = 90f;
 
-    #region Unity Methods
     void Start()
     {
-        if (targetCamera == null)
-        {
-            Camera mainCam = Camera.main;
-            if (mainCam != null) targetCamera = mainCam.transform;
-        }
-
-        walkAndTurn = GetComponent<WalkAndTurn>();
+        if (Camera.main != null)
+            cam = Camera.main.transform;
+        else
+            Debug.LogWarning("No Main Camera found in scene.");
     }
 
-    void Update()
+void Update()
     {
-        if (walkAndTurn != null && !walkAndTurn.IsMoving && !walkAndTurn.IsTurning)
-        {
-            Vector3 direction = targetCamera.position - transform.position;
-            direction.y = 0f;
+        if (cam == null) return;
 
-            if (direction.sqrMagnitude > 0.001f)
-            {
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.RotateTowards(
-                    transform.rotation, lookRotation, 90f * Time.deltaTime);
-            }
-        }
+        Vector3 direction = cam.position - transform.position;
+        direction.y = 0f;
+        if (direction.sqrMagnitude < 0.001f) return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation,
+            targetRotation,
+            rotationSpeed * Time.deltaTime
+        );
     }
-    #endregion
 }
