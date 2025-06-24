@@ -1817,6 +1817,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Paintable
       objectReference: {fileID: 0}
+    - target: {fileID: 7792153526175122010, guid: adce883b0412d8643bc814d95f49c538, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7864300673543161239, guid: adce883b0412d8643bc814d95f49c538, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2080,6 +2084,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 04541382ba5bbbd46a551f5d1a414ec5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 94883b6cebb9cdc4b991d9d8dea6c145, type: 2}
     - target: {fileID: 919132149155446097, guid: 04541382ba5bbbd46a551f5d1a414ec5, type: 3}
       propertyPath: m_Name
       value: ring
