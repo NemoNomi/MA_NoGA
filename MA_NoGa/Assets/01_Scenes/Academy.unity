@@ -372,6 +372,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 1080048306}
   activateAfterClip: 1
   delayAfterStart: 0
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &164530406
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,6 +639,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 1749421411}
   activateAfterClip: 0
   delayAfterStart: 3
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1001 &220422120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -970,6 +976,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 4948975038850784776}
   activateAfterClip: 0
   delayAfterStart: 0
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &365391091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,6 +1901,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 1565887663878291440}
   activateAfterClip: 1
   delayAfterStart: 0
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &616860291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,7 +2186,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c994d22a9398f64d9292e3849f59f92, type: 2}
+  - {fileID: 6269570435697769767, guid: 8436018e1f7fb1942b43fad724eb7687, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7677,6 +7689,7 @@ MonoBehaviour:
   - 1
   - 1
   triggeringTag: Player
+  triggered: 0
 --- !u!4 &811687394
 Transform:
   m_ObjectHideFlags: 0
@@ -9015,6 +9028,7 @@ MonoBehaviour:
   - 0
   - 1
   triggeringTag: Player
+  triggered: 0
 --- !u!65 &1117799079
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9232,6 +9246,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 0}
   activateAfterClip: 0
   delayAfterStart: 1
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &1185055391
 GameObject:
   m_ObjectHideFlags: 0
@@ -9509,6 +9526,7 @@ MonoBehaviour:
   - 0
   - 0
   - 1
+  triggered: 0
 --- !u!1 &1284662959
 GameObject:
   m_ObjectHideFlags: 0
@@ -10415,6 +10433,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 0}
   activateAfterClip: 0
   delayAfterStart: 1
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &1548251155
 GameObject:
   m_ObjectHideFlags: 0
@@ -16229,6 +16250,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 577294000}
   activateAfterClip: 1
   delayAfterStart: 0
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &1798485410
 GameObject:
   m_ObjectHideFlags: 0
@@ -17089,6 +17113,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 1708087447}
   activateAfterClip: 1
   delayAfterStart: 0
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &1990638720
 GameObject:
   m_ObjectHideFlags: 0
@@ -17998,6 +18025,9 @@ MonoBehaviour:
   objectToActivate: {fileID: 811687392}
   activateAfterClip: 1
   delayAfterStart: 0
+  activated: 0
+  clipStarted: 0
+  startTime: 0
 --- !u!1 &2144972129
 GameObject:
   m_ObjectHideFlags: 0
