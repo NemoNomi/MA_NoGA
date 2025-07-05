@@ -58,7 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7630429580948622034, guid: 065fdffb6b9704d4a8823f7a330ea3e2, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082168940739887943, guid: 065fdffb6b9704d4a8823f7a330ea3e2, type: 3}
+      propertyPath: m_UsePipelineSettings
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8818285123331731902, guid: 065fdffb6b9704d4a8823f7a330ea3e2, type: 3}
       propertyPath: m_LocalScale.y

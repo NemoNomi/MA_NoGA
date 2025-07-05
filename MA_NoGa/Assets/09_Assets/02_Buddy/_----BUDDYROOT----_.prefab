@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4150813929020436590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3723d20238a7e49878d20d9055f1a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f56de7feb0167745bad1b643fe7548a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioClipProviderSource: {fileID: 0}
@@ -1674,17 +1674,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5265742209786372200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda73905605502347b2b57df7755d3e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioClipProviderSource: {fileID: 0}
   audioClipIndex: 0
-  objectsToActivate:
-  - {fileID: 1845074270946827384}
-  - {fileID: 7866951752481355540}
-  objectsToDeactivate:
-  - {fileID: 5725168409162008224}
-  - {fileID: 1867455389446439435}
+  objectsToActivate: []
+  objectsToDeactivate: []
   animator: {fileID: 0}
   animationTrigger: 
   afterClipEnd: 0
@@ -1698,17 +1694,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5265742209786372200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda73905605502347b2b57df7755d3e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioClipProviderSource: {fileID: 0}
-  audioClipIndex: 1
-  objectsToActivate:
-  - {fileID: 3423276217109074951}
-  - {fileID: 2392166635993606123}
-  objectsToDeactivate:
-  - {fileID: 7866951752481355540}
-  - {fileID: 1845074270946827384}
+  audioClipIndex: 0
+  objectsToActivate: []
+  objectsToDeactivate: []
   animator: {fileID: 0}
   animationTrigger: 
   afterClipEnd: 0
@@ -1722,18 +1714,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5265742209786372200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda73905605502347b2b57df7755d3e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioClipProviderSource: {fileID: 0}
-  audioClipIndex: 2
-  objectsToActivate:
-  - {fileID: 8638142657549230896}
+  audioClipIndex: 0
+  objectsToActivate: []
   objectsToDeactivate: []
   animator: {fileID: 0}
   animationTrigger: 
   afterClipEnd: 0
-  delayAfterStart: 2
+  delayAfterStart: 0
 --- !u!114 &8146474682596867176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,15 +1734,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5265742209786372200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda73905605502347b2b57df7755d3e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioClipProviderSource: {fileID: 0}
-  audioClipIndex: 2
+  audioClipIndex: 0
   objectsToActivate: []
   objectsToDeactivate: []
-  animator: {fileID: 8108386921058371980}
-  animationTrigger: Spin
+  animator: {fileID: 0}
+  animationTrigger: 
   afterClipEnd: 0
   delayAfterStart: 0
 --- !u!1 &5597200344594973851
@@ -12845,10 +12836,5 @@ PrefabInstance:
 --- !u!4 &566995726798767831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8126803403224401287, guid: 2185300c5917c1e4882df4ec27096519, type: 3}
-  m_PrefabInstance: {fileID: 8581164059362132816}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8638142657549230896 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 69440506517512288, guid: 2185300c5917c1e4882df4ec27096519, type: 3}
   m_PrefabInstance: {fileID: 8581164059362132816}
   m_PrefabAsset: {fileID: 0}
