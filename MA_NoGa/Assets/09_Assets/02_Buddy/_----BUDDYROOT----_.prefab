@@ -505,7 +505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934008327109543454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8651974a676a164b8d81666c4b47af4, type: 3}
   m_Name: 
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4150813929020436590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f56de7feb0167745bad1b643fe7548a, type: 3}
   m_Name: 
@@ -1624,11 +1624,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6315142111919607467}
-  - component: {fileID: 8878531523107571151}
-  - component: {fileID: 8189363870117682885}
-  - component: {fileID: 3655117039522774833}
-  - component: {fileID: 3740072423004120770}
-  - component: {fileID: 8146474682596867176}
   m_Layer: 0
   m_Name: BuddyAnimation
   m_TagString: Untagged
@@ -1651,100 +1646,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2059460573176598436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8878531523107571151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265742209786372200}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6261622b9be55624fa7a07e066de7fb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  rotationSpeed: 90
---- !u!114 &8189363870117682885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265742209786372200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClipProviderSource: {fileID: 0}
-  audioClipIndex: 0
-  objectsToActivate: []
-  objectsToDeactivate: []
-  animator: {fileID: 0}
-  animationTrigger: 
-  afterClipEnd: 0
-  delayAfterStart: 0
---- !u!114 &3655117039522774833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265742209786372200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClipProviderSource: {fileID: 0}
-  audioClipIndex: 0
-  objectsToActivate: []
-  objectsToDeactivate: []
-  animator: {fileID: 0}
-  animationTrigger: 
-  afterClipEnd: 0
-  delayAfterStart: 0
---- !u!114 &3740072423004120770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265742209786372200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClipProviderSource: {fileID: 0}
-  audioClipIndex: 0
-  objectsToActivate: []
-  objectsToDeactivate: []
-  animator: {fileID: 0}
-  animationTrigger: 
-  afterClipEnd: 0
-  delayAfterStart: 0
---- !u!114 &8146474682596867176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5265742209786372200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9e442653e62344da72d900b9709be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClipProviderSource: {fileID: 0}
-  audioClipIndex: 0
-  objectsToActivate: []
-  objectsToDeactivate: []
-  animator: {fileID: 0}
-  animationTrigger: 
-  afterClipEnd: 0
-  delayAfterStart: 0
 --- !u!1 &5597200344594973851
 GameObject:
   m_ObjectHideFlags: 0
