@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: a5656b23b6bf5774496d10801e26cbe2, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 78151f5e58fb9f749bd5225f789faa27, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9bbe9e2e2b1e78240858534033479bf2, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 2a0e9e1ecd2fea94595da0d03ba0c11d, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1310,10 +1310,58 @@ PrefabInstance:
       propertyPath: audioClipProviderSource
       value: 
       objectReference: {fileID: 811687393}
+    - target: {fileID: 560553366672753407, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_Range
+      value: 3.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 560553366672753407, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 560553366672753407, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_SpotAngle
+      value: 28.286316
+      objectReference: {fileID: 0}
+    - target: {fileID: 560553366672753407, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1117418956692270880, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2070694721}
+    - target: {fileID: 2206071173072508174, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_MovementType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864947123290971615, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_MovementType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882595025628707316, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.6904
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882595025628707316, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73953426
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882595025628707316, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.13977115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882595025628707316, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.65409553
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882595025628707316, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.07557883
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882595025628707316, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -83.654
+      objectReference: {fileID: 0}
     - target: {fileID: 3070307719420288765, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: objectToActivate
       value: 
@@ -1326,6 +1374,10 @@ PrefabInstance:
       propertyPath: audioClipProviderSource
       value: 
       objectReference: {fileID: 1284662961}
+    - target: {fileID: 3231675248557471969, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.913
+      objectReference: {fileID: 0}
     - target: {fileID: 3387818940219180878, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: audioSource
       value: 
@@ -1378,10 +1430,18 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 172522609}
+    - target: {fileID: 4733086012163868835, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f5bf71d3327a16489fd623e30bc5274, type: 2}
     - target: {fileID: 5210586624282591189, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: audioClipProviderSource
       value: 
       objectReference: {fileID: 1227813922}
+    - target: {fileID: 5291569335684170031, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5413917814656782804, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: audioSource
       value: 
@@ -1394,6 +1454,14 @@ PrefabInstance:
       propertyPath: timedAudioComponent
       value: 
       objectReference: {fileID: 1284662961}
+    - target: {fileID: 7872310702884274349, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_Range
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872310702884274349, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_Intensity
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

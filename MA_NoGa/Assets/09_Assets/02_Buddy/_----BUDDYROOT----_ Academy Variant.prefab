@@ -222,7 +222,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 934008327109543454, guid: 7abbfe4002a36d64bbc504b0096b385e, type: 3}
       propertyPath: m_Name
-      value: _----BUDDYROOT----_ Variant
+      value: _----BUDDYROOT----_ Academy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2059460573176598436, guid: 7abbfe4002a36d64bbc504b0096b385e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -263,6 +263,18 @@ PrefabInstance:
     - target: {fileID: 2059460573176598436, guid: 7abbfe4002a36d64bbc504b0096b385e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250783423123265419, guid: 7abbfe4002a36d64bbc504b0096b385e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250783423123265419, guid: 7abbfe4002a36d64bbc504b0096b385e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.22352941
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250783423123265419, guid: 7abbfe4002a36d64bbc504b0096b385e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 3655117039522774833, guid: 7abbfe4002a36d64bbc504b0096b385e, type: 3}
       propertyPath: delayAfterStart
