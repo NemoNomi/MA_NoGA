@@ -1,104 +1,100 @@
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 /// <summary>
-/// On the first press of the primary button on the chosen XR controller,
-/// disables the “lazy follow” script, moves this object toward
-/// the target while fading its Canvas Group, then loads the
-/// next scene via FadeOutMainMenu if present.
+/// • Drei × A (rechter Controller) in <windowSeconds> s → nächste Szene.
+/// • Drei × X (linker Controller)  in <windowSeconds> s → aktuelle Szene neu laden.
+/// Das Objekt bleibt szenenübergreifend erhalten (Singleton + DontDestroyOnLoad).
 /// </summary>
-
-[RequireComponent(typeof(CanvasGroup))]
-public class MoveAndFadeOnButton : MonoBehaviour
+public class SceneShortcutByTriplePress : MonoBehaviour
 {
-    #region Inspector
-    [Header("XR Input")]
-    [SerializeField] private XRNode controllerNode = XRNode.RightHand;
+    [Header("Timing")]
+    [SerializeField] private float windowSeconds = 5f;
 
-    [Header("Animation")]
-    [SerializeField] private Transform target;
-    [SerializeField] private float moveDuration = 1.5f;
-    [SerializeField] private float fadeDuration = 1.5f;
-    [SerializeField] private AnimationCurve ease = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-    [Header("Optional Follow Script")]
-    [SerializeField] private MonoBehaviour lazyFollowToDisable;
-    #endregion
-
-    #region Cached References
-    private CanvasGroup cg;
-    #endregion
-
-    #region State
-    private Vector3 startPos;
-    private bool running;
-    private bool prevPressed;
-    #endregion
-
-    #region Unity Lifecycle
+    #region Singleton & Persistenz
+    private static SceneShortcutByTriplePress instance;
     private void Awake()
     {
-        cg = GetComponent<CanvasGroup>();
-        startPos = transform.position;
-
-        if (!lazyFollowToDisable)
-            lazyFollowToDisable = GetComponent("LazyFollow") as MonoBehaviour;
+        if (instance && instance != this)
+        {
+            Destroy(gameObject);          // Duplikat vermeiden
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);    // Überlebt Szenenwechsel
     }
+    #endregion
+
+    #region Zustände
+    // Rechter Controller (nächste Szene)
+    private int   nextPressCount;
+    private float nextCountdown;
+    private bool  prevRightPressed;
+
+    // Linker Controller (Reload)
+    private int   reloadPressCount;
+    private float reloadCountdown;
+    private bool  prevLeftPressed;
+    #endregion
 
     private void Update()
     {
-        if (running || !target) return;
-
-        var device = InputDevices.GetDeviceAtXRNode(controllerNode);
-        if (!device.isValid) return;
-
-        if (device.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed))
+        // ---------- Rechter Controller: A-Button ----------
+        var right = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        if (right.isValid &&
+            right.TryGetFeatureValue(CommonUsages.primaryButton, out bool rightPressed))
         {
-            if (pressed && !prevPressed) StartSequence();
-            prevPressed = pressed;
-        }
-    }
-    #endregion
-
-    #region Sequence
-    private void StartSequence()
-    {
-        lazyFollowToDisable?.SetEnabled(false);
-        StartCoroutine(AnimateAndLoad());
-    }
-
-    private IEnumerator AnimateAndLoad()
-    {
-        running = true;
-
-        var fader = FindFirstObjectByType<FadeOutMainMenu>();
-        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (fader) fader.FadeAndLoad(nextScene);
-        else SceneManager.LoadScene(nextScene);
-
-        float t = 0f;
-        float total = Mathf.Max(moveDuration, fadeDuration);
-
-        while (t < total)
-        {
-            t += Time.deltaTime;
-
-            float moveFrac = Mathf.Clamp01(t / moveDuration);
-            transform.position = Vector3.Lerp(startPos, target.position, ease.Evaluate(moveFrac));
-
-            cg.alpha = 1f - Mathf.Clamp01(t / fadeDuration);
-            yield return null;
+            if (rightPressed && !prevRightPressed) RegisterNextPress();
+            prevRightPressed = rightPressed;
         }
 
-        cg.alpha = 0f;
-    }
-    #endregion
-}
+        // ---------- Linker Controller: X-Button ----------
+        var left = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        if (left.isValid &&
+            left.TryGetFeatureValue(CommonUsages.primaryButton, out bool leftPressed))
+        {
+            if (leftPressed && !prevLeftPressed) RegisterReloadPress();
+            prevLeftPressed = leftPressed;
+        }
 
-static class MonoBehaviourExt
-{
-    public static void SetEnabled(this MonoBehaviour mb, bool value) { if (mb) mb.enabled = value; }
+        // Countdown-Timer tickt herunter
+        if (nextCountdown   > 0f && (nextCountdown   -= Time.deltaTime) <= 0f) nextPressCount   = 0;
+        if (reloadCountdown > 0f && (reloadCountdown -= Time.deltaTime) <= 0f) reloadPressCount = 0;
+    }
+
+    // ---------- Registrierung der A-Klicks ----------
+    private void RegisterNextPress()
+    {
+        if (nextPressCount == 0) nextCountdown = windowSeconds;
+        if (++nextPressCount >= 3)
+        {
+            LoadNextScene();
+            nextPressCount = 0; nextCountdown = 0f;   // zurücksetzen
+        }
+    }
+
+    // ---------- Registrierung der X-Klicks ----------
+    private void RegisterReloadPress()
+    {
+        if (reloadPressCount == 0) reloadCountdown = windowSeconds;
+        if (++reloadPressCount >= 3)
+        {
+            ReloadCurrentScene();
+            reloadPressCount = 0; reloadCountdown = 0f;
+        }
+    }
+
+    // ---------- Szene wechseln / neu laden ----------
+    private void LoadNextScene()
+    {
+        int next = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(next);
+    }
+
+    private void ReloadCurrentScene()
+    {
+        int cur = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(cur);
+    }
 }
