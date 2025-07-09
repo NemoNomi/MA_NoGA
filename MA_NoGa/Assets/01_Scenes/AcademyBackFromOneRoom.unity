@@ -645,6 +645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ++++++AcademyPrefab+++++++++ Room Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7433964906248253041, guid: cd1f095ca1c8a9541b0fe3ee157bdae8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
