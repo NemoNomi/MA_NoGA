@@ -1572,6 +1572,22 @@ PrefabInstance:
       propertyPath: m_MovementType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2448790230984502667, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.19496846
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448790230984502667, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.19496846
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448790230984502667, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.19496846
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448790230984502667, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
     - target: {fileID: 2864947123290971615, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: m_MovementType
       value: 2
@@ -1620,6 +1636,30 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2070694721}
+    - target: {fileID: 3437434001199044346, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4df2fef99190d074ba5ebd60d9557565, type: 2}
+    - target: {fileID: 3437434001199044346, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cd185a2f7ad4552418881a3a39634ce8, type: 2}
+    - target: {fileID: 3537480968782883194, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.19496846
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537480968782883194, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.19496846
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537480968782883194, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.19496846
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537480968782883194, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
     - target: {fileID: 3597892434479361912, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.8207643
@@ -1668,6 +1708,18 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 172522609}
+    - target: {fileID: 4564479089109668363, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4df2fef99190d074ba5ebd60d9557565, type: 2}
+    - target: {fileID: 4564479089109668363, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cd185a2f7ad4552418881a3a39634ce8, type: 2}
+    - target: {fileID: 4655906492197488705, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9541eb6fa0679c74d884b006fab43525, type: 2}
     - target: {fileID: 4733086012163868835, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1684,6 +1736,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2070694721}
+    - target: {fileID: 5796532693979679920, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9541eb6fa0679c74d884b006fab43525, type: 2}
     - target: {fileID: 7105669166804154687, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
       propertyPath: audioClipProviderSource
       value: 
@@ -1701,7 +1757,8 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5480396367971447184, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c77e1572ab46f434e98b7f39ba139d21, type: 3}
