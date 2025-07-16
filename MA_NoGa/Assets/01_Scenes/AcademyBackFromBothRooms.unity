@@ -781,7 +781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Return to Title Screen
+  m_text: "Return to \nTitle Screen"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50a6da72c90874a47a7534efeefe9cd9, type: 2}
   m_sharedMaterial: {fileID: -155374307499990216, guid: 50a6da72c90874a47a7534efeefe9cd9, type: 2}
@@ -1206,7 +1206,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.05, y: 0}
-  m_SizeDelta: {x: 102.16, y: 60}
+  m_SizeDelta: {x: 140, y: 155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637872158
 MonoBehaviour:
@@ -1241,8 +1241,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 65d31ca9600c4654e886aa7bab36e94b, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c032a2564eb0f4046b83c95ae1d52b3b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6608,7 +6608,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753969572}
   m_LocalRotation: {x: -0, y: -0.07378688, z: -0, w: 0.99727404}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0238}
+  m_LocalPosition: {x: 0, y: 0, z: 0.032}
   m_LocalScale: {x: 0.0215, y: 0.021499999, z: 0.0215}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6618,7 +6618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.0932, y: -0.555}
+  m_AnchoredPosition: {x: 0.15, y: -0.555}
   m_SizeDelta: {x: 32.7624, y: 9.5756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &801172754
@@ -6663,7 +6663,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.05, y: 0}
-  m_SizeDelta: {x: 102.16, y: 60}
+  m_SizeDelta: {x: 140, y: 155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &801172756
 MonoBehaviour:
@@ -6698,8 +6698,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 65d31ca9600c4654e886aa7bab36e94b, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c032a2564eb0f4046b83c95ae1d52b3b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7585,7 +7585,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028455809}
   m_LocalRotation: {x: -0, y: -0.07378688, z: -0, w: 0.99727404}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0168}
+  m_LocalPosition: {x: 0, y: 0, z: 0.02}
   m_LocalScale: {x: 0.0215, y: 0.021499999, z: 0.0215}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7595,7 +7595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.15080005, y: -0.558}
+  m_AnchoredPosition: {x: -0.182, y: -0.558}
   m_SizeDelta: {x: 32.7624, y: 9.5756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1170610072
@@ -14248,7 +14248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0, y: -1}
+  m_AnchoredPosition: {x: 0, y: -0.9999924}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2104223648
@@ -14271,7 +14271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Return to Bedroom
+  m_text: "Return to \nBedroom"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50a6da72c90874a47a7534efeefe9cd9, type: 2}
   m_sharedMaterial: {fileID: -155374307499990216, guid: 50a6da72c90874a47a7534efeefe9cd9, type: 2}
