@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-/// <summary>
-/// Enables the assigned target GameObject whenever an XR-grabbable 
+///
+/// Enables the assigned target Gameobject whenever an XR-grabbable 
 /// is placed in this XRSocketInteractor and disables it when removed.
-/// </summary>
+///
 
 [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor))]
 public class SocketToggleTarget : MonoBehaviour

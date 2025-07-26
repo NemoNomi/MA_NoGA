@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Plays a list of AudioClips sequentially from one single AudioSource after scene starts.
-/// </summary>
+///
+/// Plays a list of AudioClips from one single AudioSource after scene starts.
+///
+
 public class TimedAudioOnStartSingleSource : MonoBehaviour, IAudioClipProvider
 {
     #region Inspector

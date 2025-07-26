@@ -1,8 +1,8 @@
 using UnityEngine;
 
-/// <summary>
-/// Stops the Loop of Particles after 1 Round.
-/// </summary>
+///
+/// Plays the Particle System once by disabling looping.
+///
 
 [RequireComponent(typeof(ParticleSystem))]
 public class ParticlesPrewarm : MonoBehaviour

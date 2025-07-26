@@ -1,9 +1,8 @@
 using UnityEngine;
 
-/// <summary>
-/// Singleton audio player that survives scene loads; 
-/// call EnsureReady(clip) once, then Play() on each teleport.
-/// </summary>
+///
+/// Singleton audio player that survives scene loads. 
+///
 
 [RequireComponent(typeof(AudioSource))]
 public sealed class TeleportSoundPlayer : MonoBehaviour

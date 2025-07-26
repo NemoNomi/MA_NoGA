@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.SceneManagement;
 
-/// <summary>
+///
 /// Click A Button 3 times on right Controller within 5 seconds to skip the sene. Click X Button 3 times on left Controller within 5 seconds to restart the scene.
 /// Singleton
-/// </summary>
+///
+
 public class DebugScript : MonoBehaviour
 {
     [Header("Timing")]
@@ -26,13 +27,13 @@ public class DebugScript : MonoBehaviour
     #endregion
 
     #region Zustände
-    private int   nextPressCount;
+    private int nextPressCount;
     private float nextCountdown;
-    private bool  prevRightPressed;
+    private bool prevRightPressed;
 
-    private int   reloadPressCount;
+    private int reloadPressCount;
     private float reloadCountdown;
-    private bool  prevLeftPressed;
+    private bool prevLeftPressed;
     #endregion
 
     private void Update()
@@ -53,7 +54,7 @@ public class DebugScript : MonoBehaviour
             prevLeftPressed = leftPressed;
         }
 
-        if (nextCountdown   > 0f && (nextCountdown   -= Time.deltaTime) <= 0f) nextPressCount   = 0;
+        if (nextCountdown > 0f && (nextCountdown -= Time.deltaTime) <= 0f) nextPressCount = 0;
         if (reloadCountdown > 0f && (reloadCountdown -= Time.deltaTime) <= 0f) reloadPressCount = 0;
     }
 

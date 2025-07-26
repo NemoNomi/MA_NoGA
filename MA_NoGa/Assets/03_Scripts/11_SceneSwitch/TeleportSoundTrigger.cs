@@ -2,10 +2,9 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
-/// <summary>
-/// Door-side trigger: registers TeleportSoundPlayer and plays the shared clip on each teleport.
-/// Attach to every teleport door.
-/// </summary>
+///
+/// Door-side trigger: registers TeleportSoundPlayer and plays the clip on each teleport.
+///
 
 [RequireComponent(typeof(TeleportationArea))]
 public sealed class TeleportSoundTrigger : MonoBehaviour

@@ -1,14 +1,14 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Holds the endpoint URL, API key, and multipart-field name used by
-/// <c>ApiAudioHandler</c> when uploading recorded audio.
-/// </summary>
+/// ApiAudioHandler when uploading recorded audio.
+///
 
 [CreateAssetMenu(
     fileName = "ApiAudioConfig",
     menuName = "Audio Chat/API Audio Config",
-    order    = 0)]
+    order = 0)]
 public class ApiAudioConfig : ScriptableObject
 {
     [Header("Server Endpoint")]

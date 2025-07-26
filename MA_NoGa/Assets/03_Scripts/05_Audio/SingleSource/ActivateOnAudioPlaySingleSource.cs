@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/// <summary>
-/// Activates a GameObject when a specific AudioClip from any IAudioClipProvider starts playing,
-/// with optional delay or on clip end.
-/// </summary>
+///
+/// Activates a GameObject when a specific AudioClip from any IAudioClipProvider starts playing.
+///
+
 public class ActivateOnAudioPlaySingleSource : MonoBehaviour
 {
     #region Inspector

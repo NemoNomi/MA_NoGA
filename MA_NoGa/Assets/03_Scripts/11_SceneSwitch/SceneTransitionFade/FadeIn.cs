@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
+///
 /// Fades this renderer from fully opaque to transparent over
 /// fadeDuration, then destroys the GameObject.
-/// </summary>
+///
 
 [RequireComponent(typeof(Renderer))]
 public class FadeIn : MonoBehaviour

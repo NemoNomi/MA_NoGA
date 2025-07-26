@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Activates or deactivates Gameobjects or plays Animation,
 /// based on Audioclips coming from IAudioClipProvider component.
-/// </summary>
+///
 
 public class ActivateOnAudioPlayExtended : MonoBehaviour
 {

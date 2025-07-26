@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Rotates the whole Buddy (BuddyRoot) to face the camera when idle.
 /// Only activates when WalkAndTurn reports no movement or turning.
-/// </summary>
+///
 
 public class LookAtPlayerWhenIdle : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class LookAtPlayerWhenIdle : MonoBehaviour
             Debug.LogWarning("No Main Camera found in scene.");
     }
 
-void Update()
+    void Update()
     {
         if (cam == null) return;
 

@@ -1,18 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Plays a sequence of AudioClips through a single AudioSource
+///
+/// Plays a list of AudioClips through a single AudioSource
 /// when a collider with the specified tag enters this trigger.
-/// </summary>
+///
+
 public class TimedAudioOnTriggerSingleSource : MonoBehaviour, IAudioClipProvider
 {
     #region IAudioClipProvider Interface
 
-public AudioSource AudioSource => audioSource;
-public AudioClip[] AudioClips => audioClips;
+    public AudioSource AudioSource => audioSource;
+    public AudioClip[] AudioClips => audioClips;
 
-#endregion
+    #endregion
 
     #region Inspector
 

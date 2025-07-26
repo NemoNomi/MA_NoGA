@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Maintains a fixed-size pool of projectile prefabs and returns the first
+///
+/// Maintains a fixed size pool of projectile prefabs and returns the first
 /// inactive instance on request.
 /// Takes the defined Material for the Projectiles.
-/// </summary>
+///
 
 public class ProjectilePooler : MonoBehaviour
 {

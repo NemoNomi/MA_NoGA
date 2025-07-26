@@ -2,12 +2,12 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
-/// <summary>
-/// Fade-out screen quad.  
-/// Fades from opaque -- transparent on Start. 
+///
+/// Fade-out screen quad:  
+/// Fades from opaque to transparent on Start. 
 /// Calls FadeOut to fade back to opaque and wait until done.
 /// Holds Fade for set Duration on Start.  
-/// </summary>
+///
 
 [RequireComponent(typeof(Renderer))]
 public class FadeScreenPlanets : MonoBehaviour

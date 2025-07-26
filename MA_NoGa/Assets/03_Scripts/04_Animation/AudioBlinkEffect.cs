@@ -1,8 +1,8 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Switches between Colors when AudioSource plays Clip.
-/// </summary>
+///
 
 public class AudioBlinkEffect : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class AudioBlinkEffect : MonoBehaviour
     private static readonly string EmissionColorProperty = "_EmissionColor";
 
 
-     void Start()
+    void Start()
     {
         if (targetRenderer != null)
         {

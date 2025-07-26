@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-/// <summary>
+///
 /// Plays a sequence of AudioSource clips when any given
-/// <XRGrabInteractable is first grabbed.  
-/// </summary>
+/// XRGrabInteractable is grabbed.  
+///
 
 public class TimedAudioOnGrab : MonoBehaviour
 {
@@ -16,8 +16,8 @@ public class TimedAudioOnGrab : MonoBehaviour
     [SerializeField] private List<XRGrabInteractable> triggerObjects;
 
     [Header("Audio")]
-public AudioSource[] audioSources;
-    
+    public AudioSource[] audioSources;
+
 
     [Tooltip("delay[0] = wait after grab, delays[i] (i>0) = wait after clip i-1")]
     [SerializeField] private float[] delays;

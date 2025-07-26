@@ -69,39 +69,39 @@ public class Painter : MonoBehaviour
         }
     }
 
-void Draw()
-{
-    if (currentLine == null)
+    void Draw()
     {
-        GameObject lineObj = new GameObject("Line");
-        currentLine = lineObj.AddComponent<LineRenderer>();
-
-        Material newMat = new Material(lineMaterial);
-        currentLine.material = newMat;
-
-        currentLine.material.color = lineMaterial.color;
-
-        currentLine.startWidth = penWidth;
-        currentLine.endWidth = penWidth;
-        currentLine.positionCount = 1;
-        currentLine.SetPosition(0, tip.position);
-
-        currentLine.numCornerVertices = cornerVertices;
-        currentLine.numCapVertices = capVertices;
-
-        index = 1;
-    }
-    else
-    {
-        Vector3 lastPos = currentLine.GetPosition(index - 1);
-
-        if (Vector3.Distance(lastPos, tip.position) > minDistance)
+        if (currentLine == null)
         {
-            index++;
-            currentLine.positionCount = index;
-            currentLine.SetPosition(index - 1, tip.position);
+            GameObject lineObj = new GameObject("Line");
+            currentLine = lineObj.AddComponent<LineRenderer>();
+
+            Material newMat = new Material(lineMaterial);
+            currentLine.material = newMat;
+
+            currentLine.material.color = lineMaterial.color;
+
+            currentLine.startWidth = penWidth;
+            currentLine.endWidth = penWidth;
+            currentLine.positionCount = 1;
+            currentLine.SetPosition(0, tip.position);
+
+            currentLine.numCornerVertices = cornerVertices;
+            currentLine.numCapVertices = capVertices;
+
+            index = 1;
+        }
+        else
+        {
+            Vector3 lastPos = currentLine.GetPosition(index - 1);
+
+            if (Vector3.Distance(lastPos, tip.position) > minDistance)
+            {
+                index++;
+                currentLine.positionCount = index;
+                currentLine.SetPosition(index - 1, tip.position);
+            }
         }
     }
-}
 
 }

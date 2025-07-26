@@ -2,17 +2,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 
-/// <summary>
+///
 /// Uploads WAV bytes to an API and streams the MP3 reply.
-/// Starts playback as soon as buffered data is available.
-/// </summary>
+/// Starts playback as soon as data is available.
+///
 
 public class ApiAudioHandler : MonoBehaviour
 {
     #region Inspector
     [Header("Config")]
     public ApiAudioConfig config;
-    public AudioSource    playSource;
+    public AudioSource playSource;
     #endregion
 
     #region State
@@ -22,8 +22,8 @@ public class ApiAudioHandler : MonoBehaviour
     #region Public API
     public void UploadWavData(byte[] wavBytes)
     {
-        if (IsBusy)         { Debug.Log("Uploader busy.");          return; }
-        if (config == null) { Debug.LogError("Missing config.");    return; }
+        if (IsBusy) { Debug.Log("Uploader busy."); return; }
+        if (config == null) { Debug.LogError("Missing config."); return; }
 
         StartCoroutine(UploadAndStreamPlay(wavBytes));
     }

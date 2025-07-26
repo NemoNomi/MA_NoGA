@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Shows a vertical fill-bar while a collider with triggering tag
+///
+/// Shows a vertical fill bar while a collider with triggering tag
 /// stays inside this trigger.  
-/// </summary>
+///
 
 [RequireComponent(typeof(Collider))]
 public class ProgressOnTriggerUI : MonoBehaviour

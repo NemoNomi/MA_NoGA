@@ -1,10 +1,11 @@
 using UnityEngine;
 using TMPro;
 
-/// <summary>
-/// Changes a TMP_Text when a specific clip starts playing on a shared AudioSource,
-/// based on its index in a known AudioClip array.
-/// </summary>
+///
+/// Changes a TMP Text when a specific clip starts playing on a Audio Source,
+/// based on its index in a Audio Clip array.
+///
+
 public class ChangeTMPTextOnAudioClipIndex : MonoBehaviour
 {
     [Header("Audio Tracking")]

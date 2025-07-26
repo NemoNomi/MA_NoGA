@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
+///
 /// Walks once to Waypoint A, turns 180°, then stops.
-/// </summary>
 /// 
+
 public class WalkAndTurn : MonoBehaviour
 {
-  [Header("Door Animation Settings")]
+    [Header("Door Animation Settings")]
     [Tooltip("Animator that plays the 'door_anim_right' animation.")]
     [SerializeField] private Animator doorAnimator;
 

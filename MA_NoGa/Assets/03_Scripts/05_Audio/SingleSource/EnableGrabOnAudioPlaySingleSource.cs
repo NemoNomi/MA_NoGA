@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-/// <summary>
+///
 /// Enables a XRGrabInteractable when a specific AudioClip from TimedAudioOnStartSingleSource is played.
-/// </summary>
+///
+
 public class EnableGrabOnAudioPlaySingleSource : MonoBehaviour
 {
     #region Inspector

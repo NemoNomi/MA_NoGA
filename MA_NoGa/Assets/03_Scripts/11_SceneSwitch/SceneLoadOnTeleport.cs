@@ -3,16 +3,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
-/// <summary>
-/// Loads a target scene when the player teleports onto this TeleportationArea.
+///
+/// Loads a target scene when the player teleports onto this Teleportation Area.
 /// Optionally redirects to a fallback scene once a given number of other
-/// scenes have been visited during the current play-session.
-/// </summary>
+/// scenes have been visited during the current play session.
+///
 
 [RequireComponent(typeof(TeleportationArea))]
 public sealed class SceneLoadOnTeleport : MonoBehaviour
 {
-    #region Inspector -- Target
+    #region Inspector: Target
     [Header("Primary Target")]
     [SerializeField] private int targetBuildIndex = 1;
 
@@ -38,7 +38,7 @@ public sealed class SceneLoadOnTeleport : MonoBehaviour
     [SerializeField] private bool markTargetAsVisited = false;
     #endregion
 
-    #region Inspector -- (optional) Door Animation
+    #region Inspector: (optional) Door Animation
     [SerializeField] private string animationBool = "Open";
     [SerializeField] private Animator[] animators;
     #endregion

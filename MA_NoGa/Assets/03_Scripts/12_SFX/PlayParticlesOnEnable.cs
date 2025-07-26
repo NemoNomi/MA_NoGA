@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Plays Particle System on GameObject Activation.
-/// </summary>
 /// 
+
 public class PlayParticlesOnEnable : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particles;

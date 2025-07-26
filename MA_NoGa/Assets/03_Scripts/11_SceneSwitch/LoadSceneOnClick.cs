@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/// <summary>
+///
 /// Put on Button, loads Scene On Click.
-/// </summary>
 /// 
 
 using UnityEngine;

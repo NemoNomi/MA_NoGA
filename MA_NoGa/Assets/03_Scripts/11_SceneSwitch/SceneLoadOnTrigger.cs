@@ -3,11 +3,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-/// <summary>
+///
 /// Loads the next scene when one or more PlayerHand colliders remain inside
-/// this trigger for defined seconds, visualised by an optional
-/// radial progress>.
-/// </summary>
+/// this trigger for defined seconds (radial Progress).
+///
 
 [RequireComponent(typeof(Collider))]
 public class SceneLoadOnTrigger : MonoBehaviour

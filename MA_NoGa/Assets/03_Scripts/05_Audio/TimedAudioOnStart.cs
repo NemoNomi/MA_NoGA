@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
+///
 /// Plays a list of AudioSource clips after the scene starts.
-/// </summary>
+///
 
 public class TimedAudioOnStart : MonoBehaviour
 {

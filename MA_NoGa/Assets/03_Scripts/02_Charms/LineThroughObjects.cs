@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Connects transform with LineRenderer
-/// </summary>
+///
+/// Connects transform with LineRenderer.
+///
+
 [RequireComponent(typeof(LineRenderer))]
 public class LineThroughObjects : MonoBehaviour
 {
@@ -13,15 +14,15 @@ public class LineThroughObjects : MonoBehaviour
 
     LineRenderer lr;
 
-void Awake()
-{
-    lr = GetComponent<LineRenderer>();
+    void Awake()
+    {
+        lr = GetComponent<LineRenderer>();
 
-    lr.useWorldSpace   = true;
-    lr.widthMultiplier = 0.005f;
-    lr.material.enableInstancing = true;
-    lr.alignment       = LineAlignment.View;
-}
+        lr.useWorldSpace = true;
+        lr.widthMultiplier = 0.005f;
+        lr.material.enableInstancing = true;
+        lr.alignment = LineAlignment.View;
+    }
 
 
     void LateUpdate()

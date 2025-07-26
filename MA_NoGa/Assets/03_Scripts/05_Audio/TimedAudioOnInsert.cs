@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
-/// <summary>
+///
 /// Plays a sequence of AudioSource clips once an
-/// XRSocketInteractorbecomes occupied.  
-/// </summary>
+/// XRSocketInteractor becomes filled.  
+///
 
 public class TimedAudioOnInsert : MonoBehaviour
 {

@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
+///
 /// Plays a sequence of AudioSource clips when a collider with
 /// the specified tag enters this trigger.  
-/// </summary>
+///
 
 public class TimedAudioOnTrigger : MonoBehaviour
 {

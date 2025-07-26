@@ -3,9 +3,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
-/// <summary>
+///
 /// Moves the object back to a specified socket position when it is not held and not placed in a socket.
-/// </summary>
+///
 
 public class AutoReturnToSocket : MonoBehaviour
 {

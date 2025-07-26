@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Cycles through predefined GameObject groups (“sets”), deactivating all
+///
+/// Cycles through GameObject groups, deactivating all
 /// current objects and activating the next group each time
 /// ActivateNextSet is called.
-/// </summary>
+///
+
 public class ToggleObjectSets : MonoBehaviour
 {
     #region Data Types

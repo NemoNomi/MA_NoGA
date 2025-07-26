@@ -1,10 +1,11 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Fires a trigger on one or more Animators after a collider
-/// with the specified tag stays inside this trigger for a given duration.
+/// with the specified tag stays inside this trigger for specific duration.
 /// Play a sound at the same moment the animation trigger is sent.
-/// </summary>
+///
+
 public class AnimationOnTriggerEnter : MonoBehaviour
 {
     #region Inspector
@@ -17,7 +18,6 @@ public class AnimationOnTriggerEnter : MonoBehaviour
     [SerializeField] private string animationTrigger = "HandInside";
 
     [Header("Audio (optional)")]
-    [Tooltip("Leave empty to use an AudioSource on the same GameObject.")]
     [SerializeField] private AudioSource audioSource = null;
     [SerializeField] private AudioClip clipToPlay = null;
     #endregion
@@ -27,7 +27,7 @@ public class AnimationOnTriggerEnter : MonoBehaviour
     private bool isInside;
     #endregion
 
-    #region Unity – Trigger Handling
+    #region Trigger Handling
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(triggeringTag)) return;

@@ -2,11 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Fades a full-screen quad from transparent to <c>fadeColor</c> over
-/// <c>fadeDuration</c>, then loads the requested scene asynchronously and
+///
+/// Fades a fullscreen quad from transparent to fadeColor over
+/// fadeDuration, then loads the requested scene asynchronously and
 /// activates it once ready.
-/// </summary>
+///
 
 [RequireComponent(typeof(Renderer))]
 public class FadeOutMainMenu : MonoBehaviour

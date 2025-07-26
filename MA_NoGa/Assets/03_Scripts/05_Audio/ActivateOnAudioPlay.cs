@@ -1,11 +1,11 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Activates a GameObject based on an AudioSource:
 /// immediately when playback starts,
 /// X seconds after playback starts,
-/// or when the clip finishes — selectable in Inspector.
-/// </summary>
+/// or when the clip finishes.
+///
 
 public class ActivateOnAudioPlay : MonoBehaviour
 {

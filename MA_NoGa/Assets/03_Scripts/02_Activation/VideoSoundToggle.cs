@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-/// <summary>
-/// Toggles Sound on VideoPlayer with Toggle UI
-/// </summary>
+///
+/// Toggles Sound on VideoPlayer with Toggle UI.
 /// 
+
 public class VideoSoundToggle : MonoBehaviour
 {
     #region Inspector
@@ -29,7 +29,7 @@ public class VideoSoundToggle : MonoBehaviour
     }
     #endregion
 
-    #region Core
+    #region Volume Setting
     private void SetVolume(bool on)
     {
         if (audioSource) audioSource.volume = on ? 1f : 0f;

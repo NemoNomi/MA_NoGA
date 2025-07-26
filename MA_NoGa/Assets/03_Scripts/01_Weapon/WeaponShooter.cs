@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+///
+/// Handles shooting with Material Weapons
+/// and Projectile Pools.
+///
+
 public class WeaponShooter : MonoBehaviour
 {
     #region Inspector
@@ -12,7 +17,6 @@ public class WeaponShooter : MonoBehaviour
     public ProjectilePooler projectilePooler;
 
     [Header("Grab Interactable")]
-    [Tooltip("XR Grab Interactable Component on Weapon.")]
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     #endregion
 

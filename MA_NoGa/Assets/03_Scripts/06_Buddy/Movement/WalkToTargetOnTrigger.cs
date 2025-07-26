@@ -1,11 +1,10 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Walks once to Waypoint X and then stops.
 /// Starts Walking when Player Enters trigger of the GameObject this script lays on.
-/// </summary>
-/// 
-/// 
+///
+
 [RequireComponent(typeof(Collider))]
 public class WalkToTargetOnTrigger : MonoBehaviour
 {

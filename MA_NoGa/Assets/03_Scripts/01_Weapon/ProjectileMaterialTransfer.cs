@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/// <summary>
-/// Copies this object’s material onto any collider tagged “Paintable”
+/// 
+/// Copies this objects material onto any collider tagged “Paintable”
 /// when the two objects collide.
-/// </summary>
+///
 public class ProjectileMaterialTransfer : MonoBehaviour
 {
     #region Cached Data

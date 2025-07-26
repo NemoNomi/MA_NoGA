@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/// <summary>
+/// 
 /// Copies the color of any collider tagged colorSource
-/// to the pen’s ineMaterial when they enter this trigger.
-/// </summary>
+/// to the pens line Material when they enter this trigger.
+///
 
 public class PenColorPicker : MonoBehaviour
 {

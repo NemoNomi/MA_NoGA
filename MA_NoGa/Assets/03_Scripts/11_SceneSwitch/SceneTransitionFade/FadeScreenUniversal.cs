@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
+///
 /// Universal fade-in / fade-out screen quad.  
-/// Fades from opaque -- transparent on Start. 
+/// Fades from opaque to transparent on Start. 
 /// Calls FadeOut to fade back to opaque and wait until done.  
-/// </summary>
+///
 
 [RequireComponent(typeof(Renderer))]
 public class FadeScreenUniversal : MonoBehaviour

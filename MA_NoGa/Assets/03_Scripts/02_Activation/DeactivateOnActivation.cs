@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// When the GameObject that owns this component becomes active,
 /// it disables another GameObject.  
-/// </summary>
+///
 
 public class DeactivateOnActivation : MonoBehaviour
 {

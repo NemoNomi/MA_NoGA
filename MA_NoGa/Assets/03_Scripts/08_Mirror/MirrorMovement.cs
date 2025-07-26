@@ -1,8 +1,8 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Inverts axis for Mirror.
-/// </summary>
+///
 
 public class MirrorMovement : MonoBehaviour
 {

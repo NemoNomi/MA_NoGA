@@ -3,14 +3,15 @@ using TMPro;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using UnityEngine.UI;  
+using UnityEngine.UI;
 
-/// <summary>
-/// Records microphone input (16 kHz mono) when the user presses a button,
-/// stops on the next press, encodes the captured audio to WAV bytes in memory,
-/// and passes those bytes to the ApiAudioHandler for uploading and playback.
-/// The button label switches between “record” and “stop” to reflect the state.
-/// </summary>
+///
+/// Records microphone input when the user presses a button,
+/// stops on the next press, transform to WAV,
+/// and passes that to the ApiAudioHandler for uploading and playback.
+/// The button label switches between “record” and “stop”.
+/// Written by ChatGPT.
+///
 
 public class SimpleMicRecorder : MonoBehaviour
 {
@@ -33,21 +34,21 @@ public class SimpleMicRecorder : MonoBehaviour
     public ApiAudioHandler apiAudioHandler;
     #endregion
 
-     #region UI references & colours
+    #region UI references & colours
     [Header("UI")]
     public TMP_Text labelTMP;
 
     [Tooltip("Image you want to tint while recording")]
-    public Image targetImage;                      // ▲ NEW
+    public Image targetImage;
 
     [Tooltip("Tint when NOT recording")]
-    public Color idleColour   = Color.white;
+    public Color idleColour = Color.white;
 
     [Tooltip("Tint while recording")]
-    public Color recordColour = new Color(0.85f, 0.15f, 0.15f);  // soft red
+    public Color recordColour = new Color(0.85f, 0.15f, 0.15f);
     #endregion
 
- #region Button OnClick-Event
+    #region Button OnClick-Event
     public void ToggleRecording()
     {
         if (isRecording) StopRecording();
@@ -56,24 +57,22 @@ public class SimpleMicRecorder : MonoBehaviour
         UpdateVisuals();
     }
 
-     private void UpdateVisuals()
+    private void UpdateVisuals()
     {
-        /* text */
         if (labelTMP != null)
             labelTMP.text = isRecording ? "stop" : "record";
 
-        /* image tint */
         EnsureImageReference();
         if (targetImage != null)
-            targetImage.color = isRecording ? recordColour : idleColour;   // ▲ CHANGED
+            targetImage.color = isRecording ? recordColour : idleColour;
     }
     #endregion
 
-#region Helper
-    private void EnsureImageReference()                // ▲ NEW helper
+    #region Helper
+    private void EnsureImageReference()
     {
         if (targetImage == null)
-            targetImage = GetComponent<Image>();       // same GO as the Button
+            targetImage = GetComponent<Image>();
     }
     #endregion
 

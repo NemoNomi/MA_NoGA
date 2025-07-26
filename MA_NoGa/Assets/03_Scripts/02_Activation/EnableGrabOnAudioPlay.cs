@@ -1,8 +1,8 @@
 using UnityEngine;
 
-/// <summary>
+///
 /// Activates a XRGrabInteractable based on Audio-Events
-/// </summary>
+///
 
 public class EnableGrabOnAudioPlay : MonoBehaviour
 {
